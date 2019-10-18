@@ -1,4 +1,4 @@
-<table>
+<table class="table">
   <thead>
     <th>
       <div class="tab"><button>IMS</button></div>
@@ -18,5 +18,5 @@
   </thead>
 </table>
 
-<input #input type="text" name="input" ngModel><br>
-<p>{{input.value}}</p>
+<p>Input: <input type="text" name="input" [(ngModel)]="input"> <button (click)="enterPressed($event)">enter</button></p>
+<p>Output:{{input}}</p>
