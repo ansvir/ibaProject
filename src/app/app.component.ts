@@ -10,6 +10,8 @@ export let tabs =
     FTP: ''
   };
 
+const tabNames = ['IMS','CICS','MQ','DB2','FTP'];
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -21,6 +23,16 @@ export class AppComponent {
   userInput='';
   currentTab='IMS';
   currentRes='';
+
+  enterButtonPressed() {
+    this.enterPressed();
+  }
+
+  keyPressed(event) {
+    if(event.key==='Enter') {
+      this.enterPressed();
+    }
+  }
 
   enterPressed() {
     if(this.userInput!=='') {
@@ -56,11 +68,11 @@ export class AppComponent {
   }
 
   tabPressed(tab: string) {
-    document.getElementById('IMS').classList.remove('tabsButtonClicked');
-    document.getElementById('CICS').classList.remove('tabsButtonClicked');
-    document.getElementById('MQ').classList.remove('tabsButtonClicked');
-    document.getElementById('DB2').classList.remove('tabsButtonClicked');
-    document.getElementById('FTP').classList.remove('tabsButtonClicked');
+    
+    tabNames.forEach((element)=> {
+      document.getElementById(element).classList.remove('tabsButtonClicked');
+    });
+
     switch (tab) {
       case 'IMS': {
         this.currentTab='IMS';

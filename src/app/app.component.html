@@ -19,9 +19,10 @@
     </tr>
   </table>
   <div class="io">
-    <p>Input:
-      <input type="text" name="input" [(ngModel)]="userInput">&nbsp;
-      <button (click)="enterPressed()" class="ioButtons">
+    <p>
+      Input:
+      <input type="text" name="input" [(ngModel)]="userInput" (keydown)="keyPressed($event)">&nbsp;
+      <button (click)="enterButtonPressed()" class="ioButtons">
         enter
       </button>
     </p>
