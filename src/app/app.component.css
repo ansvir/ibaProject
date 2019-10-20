@@ -1,6 +1,65 @@
-/* Style the tab */
-.tab {
-  text-align: center;
+.mainTab {
+  border: 1px solid;
+  border-radius: 5px;
+  margin-top: 50px;
+  width:25%;
+  margin-left:auto;
+  margin-right:auto;
+  background-color: #E6E6E6;
+}
+.tabsTab {
+  padding-top: 10px;
+  width:25%;
+  margin-left:auto;
+  margin-right:auto;
 }
 
-.table { width:25%}
+input {
+  width: 200px;
+}
+
+textarea {
+  -moz-appearance: none;
+  outline: none;
+  resize: none;
+  height: 50px;
+  width: 200px;
+
+}
+.io {
+  text-align:center
+}
+
+.tabsButtons {
+  -moz-appearance: none;
+  outline: none;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid;
+  color: black;
+  padding: 10px 15px;
+  font-size: 16px;
+}
+
+.tabsButtonClicked {
+  font-weight: bold;
+  -moz-appearance: none;
+  outline: none;
+  background-color: black;
+  border-radius: 5px;
+  border: 1px solid black;
+  color: white;
+  padding: 10px 15px;
+  font-size: 16px;
+}
+
+.ioButtons {
+  -moz-appearance: none;
+  outline: none;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid;
+  color: black;
+  padding: 5px 15px;
+  font-size: 16px;
+}

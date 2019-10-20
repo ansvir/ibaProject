@@ -1,22 +1,38 @@
-<table class="table">
-  <thead>
-    <th>
-      <div class="tab"><button>IMS</button></div>
-    </th>
-    <th>
-      <div class="tab"><button>CICS</button></div>
-    </th>
-    <th>
-      <div class="tab"><button>MQ</button></div>
-    </th>
-    <th>
-      <div class="tab"><button>DB2</button></div>
-    </th>
-    <th>
-      <div class="tab"><button>FTP</button></div>
-    </th>
-  </thead>
+<table class="mainTab">
+  <table class="tabsTab">
+    <tr>
+      <th>
+        <button (click)="tabPressed('IMS')" id="IMS" class="tabsButtons">IMS</button>
+      </th>
+      <th>
+        <button (click)="tabPressed('CICS')" id="CICS" class="tabsButtons">CICS</button>
+      </th>
+      <th>
+        <button (click)="tabPressed('MQ')" id="MQ" class="tabsButtons">MQ</button>
+      </th>
+      <th>
+       <button (click)="tabPressed('DB2')" id="DB2" class="tabsButtons">DB2</button>
+      </th>
+      <th>
+       <button (click)="tabPressed('FTP')" id="FTP" class="tabsButtons">FTP</button>
+      </th>
+    </tr>
+  </table>
+  <div class="io">
+    <p>Input:
+      <input type="text" name="input" [(ngModel)]="userInput">&nbsp;
+      <button (click)="enterPressed()" class="ioButtons">
+        enter
+      </button>
+    </p>
+    <p>
+      Output:
+      <textarea readonly>{{currentRes}}</textarea>&nbsp;
+      <button (click)="clearText()" class="ioButtons">
+        clear
+      </button>
+    </p>
+  </div>
 </table>
 
-<p>Input: <input type="text" name="input" [(ngModel)]="input"> <button (click)="enterPressed($event)">enter</button></p>
-<p>Output:{{input}}</p>
+
