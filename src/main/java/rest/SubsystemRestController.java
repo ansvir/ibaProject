@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class CustomerRestController {
+public class SubsystemRestController {
 
 
     @Autowired
@@ -21,34 +21,34 @@ public class CustomerRestController {
 
 
     @GetMapping("/customers")
-    public List<Customer> getCustomers() {
+    public List<Subsystem> getCustomers() {
         return customerDAO.list();
     }
 
     @GetMapping("/customers/{id}")
     public ResponseEntity<?> getCustomer(@PathVariable("id") Long id) {
 
-        Customer customer = customerDAO.get(id);
+        Subsystem customer = customerDAO.get(id);
         if (customer == null) {
-            return new ResponseEntity<String>("No Customer found for ID " + id, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>("No Subsystem found for ID " + id, HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<Customer>(customer, HttpStatus.OK);
+        return new ResponseEntity<Subsystem>(customer, HttpStatus.OK);
     }
 
     @PostMapping(value = "/customers")
-    public ResponseEntity<?> createCustomer(@RequestBody Customer customer) {
+    public ResponseEntity<?> createCustomer(@RequestBody Subsystem customer) {
 
         customerDAO.create(customer);
 
-        return new ResponseEntity<Customer>(customer, HttpStatus.OK);
+        return new ResponseEntity<Subsystem>(customer, HttpStatus.OK);
     }
 
     @DeleteMapping("/customers/{id}")
     public ResponseEntity<?> deleteCustomer(@PathVariable Long id) {
 
         if (null == customerDAO.delete(id)) {
-            return new ResponseEntity<String>("No Customer found for ID " + id, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>("No Subsystem found for ID " + id, HttpStatus.NOT_FOUND);
         }
 
         return new ResponseEntity<Long>(id, HttpStatus.OK);
@@ -56,15 +56,15 @@ public class CustomerRestController {
     }
 
     @PutMapping("/customers/{id}")
-    public ResponseEntity<?> updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
+    public ResponseEntity<?> updateCustomer(@PathVariable Long id, @RequestBody Subsystem customer) {
 
         customer = customerDAO.update(id, customer);
 
         if (null == customer) {
-            return new ResponseEntity<String>("No Customer found for ID " + id, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>("No Subsystem found for ID " + id, HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<Customer>(customer, HttpStatus.OK);
+        return new ResponseEntity<Subsystem>(customer, HttpStatus.OK);
     }
 
 }

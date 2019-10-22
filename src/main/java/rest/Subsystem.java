@@ -1,18 +1,18 @@
 package rest;
 
-public class Customer {
+public class Subsystem {
 
     private Long id;
     private String name;
     private String url;
 
-    public Customer(long id, String name, String url) {
+    public Subsystem(long id, String name, String url) {
         this.id = id;
         this.name = name;
         this.url = url;
     }
 
-    public Customer() {
+    public Subsystem() {
     }
 
     public Long getId() {

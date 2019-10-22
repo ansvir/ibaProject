@@ -8,20 +8,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class CustomerDAO {
 
+    private int counter;
     // Dummy database. Initialize with some dummy values.
-    private static List<Customer> customers;
+    private static List<Subsystem> terminal;
     {
-        customers = new ArrayList<Customer>();
-        customers.add(new Customer(1, "IMS", "IMS"));
+        terminal = new ArrayList<Subsystem>();
+        terminal.add(new Subsystem(1, "IMS", "IMS"));
     }
 
     /**
-     * Returns list of customers from dummy database.
+     * Returns list of terminal from dummy database.
      *
-     * @return list of customers
+     * @return list of terminal
      */
-    public List<Customer> list() {
-        return customers;
+    public List<Subsystem> list() {
+        return terminal;
     }
 
     /**
@@ -32,9 +33,9 @@ public class CustomerDAO {
      *            customer id
      * @return customer object for given id
      */
-    public Customer get(Long id) {
+    public Subsystem get(Long id) {
 
-        for (Customer c : customers) {
+        for (Subsystem c : terminal) {
             if (c.getId().equals(id)) {
                 return c;
             }
@@ -47,12 +48,12 @@ public class CustomerDAO {
      * customer in list.
      *
      * @param customer
-     *            Customer object
+     *            Subsystem object
      * @return customer object with updated id
      */
-    public Customer create(Customer customer) {
+    public Subsystem create(Subsystem customer) {
         customer.setId(System.currentTimeMillis());
-        customers.add(customer);
+        terminal.add(customer);
         return customer;
     }
 
@@ -66,9 +67,9 @@ public class CustomerDAO {
      */
     public Long delete(Long id) {
 
-        for (Customer c : customers) {
+        for (Subsystem c : terminal) {
             if (c.getId().equals(id)) {
-                customers.remove(c);
+                terminal.remove(c);
                 return id;
             }
         }
@@ -84,13 +85,13 @@ public class CustomerDAO {
      * @param customer
      * @return customer object with id
      */
-    public Customer update(Long id, Customer customer) {
+    public Subsystem update(Long id, Subsystem customer) {
 
-        for (Customer c : customers) {
+        for (Subsystem c : terminal) {
             if (c.getId().equals(id)) {
                 customer.setId(c.getId());
-                customers.remove(c);
-                customers.add(customer);
+                terminal.remove(c);
+                terminal.add(customer);
                 return customer;
             }
         }
