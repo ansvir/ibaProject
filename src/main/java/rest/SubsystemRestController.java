@@ -37,11 +37,11 @@ public class SubsystemRestController {
     }
 
     @PostMapping(value = "/subsystems")
-    public ResponseEntity<?> createCustomer(@RequestBody Subsystem customer) {
+    public ResponseEntity<?> createCustomer(@RequestBody Subsystem subsystem) {
 
-        subsystemDAO.create(customer);
+        subsystemDAO.create(subsystem);
 
-        return new ResponseEntity<Subsystem>(customer, HttpStatus.OK);
+        return new ResponseEntity<Subsystem>(subsystem, HttpStatus.OK);
     }
 
     @DeleteMapping("/subsystems/{id}")
@@ -56,15 +56,15 @@ public class SubsystemRestController {
     }
 
     @PutMapping("/subsystems/{id}")
-    public ResponseEntity<?> updateCustomer(@PathVariable Long id, @RequestBody Subsystem customer) {
+    public ResponseEntity<?> updateCustomer(@PathVariable Long id, @RequestBody Subsystem subsystem) {
 
-        customer = subsystemDAO.update(id, customer);
+        subsystem = subsystemDAO.update(id, subsystem);
 
-        if (null == customer) {
+        if (null == subsystem) {
             return new ResponseEntity<String>("No Subsystem found for ID " + id, HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<Subsystem>(customer, HttpStatus.OK);
+        return new ResponseEntity<Subsystem>(subsystem, HttpStatus.OK);
     }
 
 }

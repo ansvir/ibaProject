@@ -84,17 +84,17 @@ public class SubsystemDAO {
      * not exists, returns null
      *
      * @param id
-     * @param customer
+     * @param newSubsystem
      * @return customer object with id
      */
-    public Subsystem update(Long id, Subsystem customer) {
+    public Subsystem update(Long id, Subsystem newSubsystem) {
 
         for (Subsystem c : subsystem) {
             if (c.getId().equals(id)) {
-                customer.setId(c.getId());
+                newSubsystem.setId(c.getId());
                 subsystem.remove(c);
-                subsystem.add(customer);
-                return customer;
+                subsystem.add(newSubsystem);
+                return newSubsystem;
             }
         }
 
