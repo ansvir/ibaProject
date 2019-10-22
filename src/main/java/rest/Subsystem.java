@@ -12,9 +12,6 @@ public class Subsystem {
         this.url = url;
     }
 
-    public Subsystem() {
-    }
-
     public Long getId() {
         return id;
     }

@@ -6,23 +6,25 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CustomerDAO {
+public class SubsystemDAO {
 
-    private int counter;
-    // Dummy database. Initialize with some dummy values.
-    private static List<Subsystem> terminal;
+    private static List<Subsystem> subsystem;
     {
-        terminal = new ArrayList<Subsystem>();
-        terminal.add(new Subsystem(1, "IMS", "IMS"));
+        subsystem = new ArrayList<Subsystem>();
+        subsystem.add(new Subsystem(1, "IMS", "IMS"));
+        subsystem.add(new Subsystem(2, "CICS", "CICS"));
+        subsystem.add(new Subsystem(3, "MQ", "MQ"));
+        subsystem.add(new Subsystem(4, "DB2", "DB2"));
+        subsystem.add(new Subsystem(5, "FTP", "FTP"));
     }
 
     /**
-     * Returns list of terminal from dummy database.
+     * Returns list of subsystem from dummy database.
      *
-     * @return list of terminal
+     * @return list of subsystem
      */
     public List<Subsystem> list() {
-        return terminal;
+        return subsystem;
     }
 
     /**
@@ -35,7 +37,7 @@ public class CustomerDAO {
      */
     public Subsystem get(Long id) {
 
-        for (Subsystem c : terminal) {
+        for (Subsystem c : subsystem) {
             if (c.getId().equals(id)) {
                 return c;
             }
@@ -53,7 +55,7 @@ public class CustomerDAO {
      */
     public Subsystem create(Subsystem customer) {
         customer.setId(System.currentTimeMillis());
-        terminal.add(customer);
+        subsystem.add(customer);
         return customer;
     }
 
@@ -67,9 +69,9 @@ public class CustomerDAO {
      */
     public Long delete(Long id) {
 
-        for (Subsystem c : terminal) {
+        for (Subsystem c : subsystem) {
             if (c.getId().equals(id)) {
-                terminal.remove(c);
+                subsystem.remove(c);
                 return id;
             }
         }
@@ -87,11 +89,11 @@ public class CustomerDAO {
      */
     public Subsystem update(Long id, Subsystem customer) {
 
-        for (Subsystem c : terminal) {
+        for (Subsystem c : subsystem) {
             if (c.getId().equals(id)) {
                 customer.setId(c.getId());
-                terminal.remove(c);
-                terminal.add(customer);
+                subsystem.remove(c);
+                subsystem.add(customer);
                 return customer;
             }
         }

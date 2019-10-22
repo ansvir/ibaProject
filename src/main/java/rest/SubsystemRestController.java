@@ -17,18 +17,18 @@ public class SubsystemRestController {
 
 
     @Autowired
-    private CustomerDAO customerDAO;
+    private SubsystemDAO subsystemDAO;
 
 
-    @GetMapping("/customers")
+    @GetMapping("/subsystems")
     public List<Subsystem> getCustomers() {
-        return customerDAO.list();
+        return subsystemDAO.list();
     }
 
-    @GetMapping("/customers/{id}")
+    @GetMapping("/subsystems/{id}")
     public ResponseEntity<?> getCustomer(@PathVariable("id") Long id) {
 
-        Subsystem customer = customerDAO.get(id);
+        Subsystem customer = subsystemDAO.get(id);
         if (customer == null) {
             return new ResponseEntity<String>("No Subsystem found for ID " + id, HttpStatus.NOT_FOUND);
         }
@@ -36,29 +36,29 @@ public class SubsystemRestController {
         return new ResponseEntity<Subsystem>(customer, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/customers")
+    @PostMapping(value = "/subsystems")
     public ResponseEntity<?> createCustomer(@RequestBody Subsystem customer) {
 
-        customerDAO.create(customer);
+        subsystemDAO.create(customer);
 
         return new ResponseEntity<Subsystem>(customer, HttpStatus.OK);
     }
 
-    @DeleteMapping("/customers/{id}")
+    @DeleteMapping("/subsystems/{id}")
     public ResponseEntity<?> deleteCustomer(@PathVariable Long id) {
 
-        if (null == customerDAO.delete(id)) {
-            return new ResponseEntity<String>("No Subsystem found for ID " + id, HttpStatus.NOT_FOUND);
+        if (null == subsystemDAO.delete(id)) {
+            return new ResponseEntity<String>("No Subsystems found for ID " + id, HttpStatus.NOT_FOUND);
         }
 
         return new ResponseEntity<Long>(id, HttpStatus.OK);
 
     }
 
-    @PutMapping("/customers/{id}")
+    @PutMapping("/subsystems/{id}")
     public ResponseEntity<?> updateCustomer(@PathVariable Long id, @RequestBody Subsystem customer) {
 
-        customer = customerDAO.update(id, customer);
+        customer = subsystemDAO.update(id, customer);
 
         if (null == customer) {
             return new ResponseEntity<String>("No Subsystem found for ID " + id, HttpStatus.NOT_FOUND);
