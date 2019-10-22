@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/")
 public class RestfulHello {
 
-    @RequestMapping(value = "hello")
+    @RequestMapping(value = "subsystems/IMS")
     public ResponseEntity<String> sayHello() {
         final HttpHeaders httpHeaders= new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        return new ResponseEntity<String>("{\"msg\": \"Hello World\"}", httpHeaders, HttpStatus.OK);
+        return new ResponseEntity<String>("{\n\t\"id\": \"1\"\n\t\"name\": \"IMS\"\n\t\"url\": \"IMS\"\n}", httpHeaders, HttpStatus.OK);
     }
 }
