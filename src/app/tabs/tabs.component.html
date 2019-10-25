@@ -1,10 +1,10 @@
 <div class="horizontal">
   <div
     class="tabs"
-    *ngFor="let jsons of json; let i=index"
+    *ngFor="let subsystem of subsystems; let i=index"
     [ngClass]="{'tabClicked':tabId==i}"
     (click)="tabPressed(i);"
   >
-    {{jsons.name}}
+    {{subsystem.name}}
   </div>
 </div>

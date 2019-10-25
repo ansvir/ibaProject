@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SubsystemResponseComponent } from './subsystem-response.component';
+import { TabsComponent } from './tabs.component';
 
-describe('SubsystemResponseComponent', () => {
-  let component: SubsystemResponseComponent;
-  let fixture: ComponentFixture<SubsystemResponseComponent>;
+describe('TabsComponent', () => {
+  let component: TabsComponent;
+  let fixture: ComponentFixture<TabsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SubsystemResponseComponent ]
+      declarations: [ TabsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SubsystemResponseComponent);
+    fixture = TestBed.createComponent(TabsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

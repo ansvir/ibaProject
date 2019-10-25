@@ -1,25 +1,5 @@
 <table class="mainTab">
-  <app-subsystem-component></app-subsystem-component>
-
-  <!--<table class="tabsTab">-->
-    <!--<tr>-->
-      <!--<th>-->
-        <!--<button (click)="tabPressed('IMS')" id="IMS" class="tabsButtons">IMS</button>-->
-      <!--</th>-->
-      <!--<th>-->
-        <!--<button (click)="tabPressed('CICS')" id="CICS" class="tabsButtons">CICS</button>-->
-      <!--</th>-->
-      <!--<th>-->
-        <!--<button (click)="tabPressed('MQ')" id="MQ" class="tabsButtons">MQ</button>-->
-      <!--</th>-->
-      <!--<th>-->
-       <!--<button (click)="tabPressed('DB2')" id="DB2" class="tabsButtons">DB2</button>-->
-      <!--</th>-->
-      <!--<th>-->
-       <!--<button (click)="tabPressed('FTP')" id="FTP" class="tabsButtons">FTP</button>-->
-      <!--</th>-->
-    <!--</tr>-->
-  <!--</table>-->
+  <app-tabs-component (outToParent)="receiveFromChild($event)"></app-tabs-component>
   <hr>
   <div class="io">
     <p>

@@ -1,30 +1,58 @@
 
-import { Component } from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {TabsComponent} from './tabs/tabs.component';
 
 export let tabs =
   {
-    IMS: '',
-    CICS: '',
-    MQ: '',
-    DB2: '',
-    FTP: ''
+    IMS: {
+      title:'IMS',
+      result:''
+    },
+    CICS: {
+      title:'CICS',
+      result:''
+    },
+    MQ: {
+      title:'CICS',
+      result:''
+    },
+    DB2: {
+      title:'CICS',
+      result:''
+    },
+    FTP: {
+      title:'CICS',
+      result:''
+    }
   };
-
-const tabNames = ['IMS','CICS','MQ','DB2','FTP'];
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 
-export class AppComponent {
+export class AppComponent{
+
+  constructor(private httpClient: HttpClient) { }
 
   userInput='';
-  currentTab='IMS';
+  // currentTab='IMS';
   currentRes='';
+  currentTab;
+  commands;
+  subsystems;
+
+  receiveFromChild(event){
+    this.subsystems = event;
+  }
 
   enterButtonPressed() {
+
+    // this.httpClient.post('http://localhost:8080/subsystems/commands',this.commands )
+    //   .subscribe();
+
     this.enterPressed();
   }
 
@@ -35,101 +63,70 @@ export class AppComponent {
   }
 
   enterPressed() {
-    if(this.userInput!=='') {
-      switch (this.currentTab) {
-        case 'IMS': {
-          tabs.IMS += this.userInput + '\n';
-          this.currentRes = tabs.IMS;
-          break;
-        }
-        case 'CICS': {
-          tabs.CICS += this.userInput + '\n';
-          this.currentRes = tabs.CICS;
-          break;
-        }
-        case 'MQ': {
-          tabs.MQ += this.userInput + '\n';
-          this.currentRes = tabs.MQ;
-          break;
-        }
-        case 'DB2': {
-          tabs.DB2 += this.userInput + '\n';
-          this.currentRes = tabs.DB2;
-          break;
-        }
-        case 'FTP': {
-          tabs.FTP += this.userInput + '\n';
-          this.currentRes = tabs.FTP;
-          break;
-        }
-      }
-      this.userInput = '';
-    }
+    console.log(this.subsystems);
+
+    this.currentRes+=this.subsystems.name+'\n';
+
+
+    // if(this.userInput!=='') {
+    //   switch (this.currentTab) {
+    //     case 'IMS': {
+    //       tabs.IMS += this.userInput + '\n';
+    //       this.currentRes = tabs.IMS;
+    //       break;
+    //     }
+    //     case 'CICS': {
+    //       tabs.CICS += this.userInput + '\n';
+    //       this.currentRes = tabs.CICS;
+    //       break;
+    //     }
+    //     case 'MQ': {
+    //       tabs.MQ += this.userInput + '\n';
+    //       this.currentRes = tabs.MQ;
+    //       break;
+    //     }
+    //     case 'DB2': {
+    //       tabs.DB2 += this.userInput + '\n';
+    //       this.currentRes = tabs.DB2;
+    //       break;
+    //     }
+    //     case 'FTP': {
+    //       tabs.FTP += this.userInput + '\n';
+    //       this.currentRes = tabs.FTP;
+    //       break;
+    //     }
+    //   }
+    //   this.userInput = '';
+    // }
   }
 
-  // tabPressed(tab: string) {
-  //
-  //   tabNames.forEach((element)=> {
-  //     document.getElementById(element).classList.remove('tabsButtonClicked');
-  //   });
-  //
-  //   switch (tab) {
-  //     case 'IMS': {
-  //       this.currentTab='IMS';
-  //       this.currentRes=tabs.IMS;
-  //       break;
-  //     }
-  //     case 'CICS': {
-  //       this.currentTab='CICS';
-  //       this.currentRes=tabs.CICS;
-  //       break;
-  //     }
-  //     case 'MQ': {
-  //       this.currentTab='MQ';
-  //       this.currentRes=tabs.MQ;
-  //       break;
-  //     }
-  //     case 'DB2': {
-  //       this.currentTab='DB2';
-  //       this.currentRes=tabs.DB2;
-  //       break;
-  //     }
-  //     case 'FTP': {
-  //       this.currentTab='FTP';
-  //       this.currentRes=tabs.FTP;
-  //       break;
-  //     }
-  //   }
-  //   document.getElementById(this.currentTab).classList.add('tabsButtonClicked');
-  // }
-
   clearText() {
-    switch (this.currentTab) {
-      case 'IMS': {
-        tabs.IMS='';
-        this.currentRes=tabs.IMS;
-        break;
-      }
-      case 'CICS': {
-        tabs.CICS='';
-        this.currentRes=tabs.CICS;
-        break;
-      }
-      case 'MQ': {
-        tabs.MQ='';
-        this.currentRes=tabs.MQ;
-        break;
-      }
-      case 'DB2': {
-        tabs.DB2='';
-        this.currentRes=tabs.DB2;
-        break;
-      }
-      case 'FTP': {
-        tabs.FTP='';
-        this.currentRes=tabs.FTP;
-        break;
-      }
-    }
+    // switch (this.currentTab) {
+    //   case 'IMS': {
+    //     tabs.IMS='';
+    //     this.currentRes=tabs.IMS;
+    //     break;
+    //   }
+    //   case 'CICS': {
+    //     tabs.CICS='';
+    //     this.currentRes=tabs.CICS;
+    //     break;
+    //   }
+    //   case 'MQ': {
+    //     tabs.MQ='';
+    //     this.currentRes=tabs.MQ;
+    //     break;
+    //   }
+    //   case 'DB2': {
+    //     tabs.DB2='';
+    //     this.currentRes=tabs.DB2;
+    //     break;
+    //   }
+    //   case 'FTP': {
+    //     tabs.FTP='';
+    //     this.currentRes=tabs.FTP;
+    //     break;
+    //   }
+    // }
   }
 }
