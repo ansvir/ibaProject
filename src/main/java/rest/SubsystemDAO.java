@@ -19,7 +19,7 @@ public class SubsystemDAO {
     }
 
     /**
-     * Returns list of subsystem from dummy database.
+     * Returns list of subsystem from database.
      *
      * @return list of subsystem
      */
@@ -28,12 +28,12 @@ public class SubsystemDAO {
     }
 
     /**
-     * Return customer object for given id from dummy database. If customer is
+     * Return subsystem object for given id from database. If subsystem is
      * not found for id, returns null.
      *
      * @param id
-     *            customer id
-     * @return customer object for given id
+     *            subsystem id
+     * @return subsystem object for given id
      */
     public Subsystem get(Long id) {
 
@@ -46,12 +46,12 @@ public class SubsystemDAO {
     }
 
     /**
-     * Create new customer in dummy database. Updates the id and insert new
-     * customer in list.
+     * Create new subsystem in database. Updates the id and insert new
+     * subsystem in list.
      *
      * @param customer
      *            Subsystem object
-     * @return customer object with updated id
+     * @return subsystem object with updated id
      */
     public Subsystem create(Subsystem customer) {
         customer.setId(System.currentTimeMillis());
@@ -60,12 +60,12 @@ public class SubsystemDAO {
     }
 
     /**
-     * Delete the customer object from dummy database. If customer not found for
+     * Delete the subsystem object from database. If subsystem not found for
      * given id, returns null.
      *
      * @param id
-     *            the customer id
-     * @return id of deleted customer object
+     *            the subsystem id
+     * @return id of deleted subsystem object
      */
     public Long delete(Long id) {
 
@@ -80,12 +80,12 @@ public class SubsystemDAO {
     }
 
     /**
-     * Update the customer object for given id in dummy database. If customer
+     * Update the subsystem object for given id in database. If subsystem
      * not exists, returns null
      *
      * @param id
      * @param newSubsystem
-     * @return customer object with id
+     * @return subsystem object with id
      */
     public Subsystem update(Long id, Subsystem newSubsystem) {
 
