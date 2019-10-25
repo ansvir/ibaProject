@@ -1,9 +1,6 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-
-const tabNames = ['IMS','CICS','MQ','DB2','FTP'];
-
 @Component({
   selector: 'app-subsystem-component',
   templateUrl: 'subsystem-response.component.html',
