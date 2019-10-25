@@ -24,6 +24,7 @@
     "align": false,
     "one-line": false,
     "comment-format": false,
-    "no-trailing-whitespace": false
+    "no-trailing-whitespace": false,
+    "forin": false
   }
 }

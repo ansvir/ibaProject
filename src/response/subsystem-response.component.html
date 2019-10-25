@@ -1,3 +1,10 @@
-<p>
-  response works!
-</p>
+<div class="horizontal">
+  <div
+    class="tabs"
+    *ngFor="let jsons of json; let i=index"
+    [ngClass]="{'tabClicked':tabId==i}"
+    (click)="tabPressed(i);"
+  >
+    {{jsons.name}}
+  </div>
+</div>

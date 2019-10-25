@@ -67,41 +67,41 @@ export class AppComponent {
     }
   }
 
-  tabPressed(tab: string) {
-    
-    tabNames.forEach((element)=> {
-      document.getElementById(element).classList.remove('tabsButtonClicked');
-    });
-
-    switch (tab) {
-      case 'IMS': {
-        this.currentTab='IMS';
-        this.currentRes=tabs.IMS;
-        break;
-      }
-      case 'CICS': {
-        this.currentTab='CICS';
-        this.currentRes=tabs.CICS;
-        break;
-      }
-      case 'MQ': {
-        this.currentTab='MQ';
-        this.currentRes=tabs.MQ;
-        break;
-      }
-      case 'DB2': {
-        this.currentTab='DB2';
-        this.currentRes=tabs.DB2;
-        break;
-      }
-      case 'FTP': {
-        this.currentTab='FTP';
-        this.currentRes=tabs.FTP;
-        break;
-      }
-    }
-    document.getElementById(this.currentTab).classList.add('tabsButtonClicked');
-  }
+  // tabPressed(tab: string) {
+  //
+  //   tabNames.forEach((element)=> {
+  //     document.getElementById(element).classList.remove('tabsButtonClicked');
+  //   });
+  //
+  //   switch (tab) {
+  //     case 'IMS': {
+  //       this.currentTab='IMS';
+  //       this.currentRes=tabs.IMS;
+  //       break;
+  //     }
+  //     case 'CICS': {
+  //       this.currentTab='CICS';
+  //       this.currentRes=tabs.CICS;
+  //       break;
+  //     }
+  //     case 'MQ': {
+  //       this.currentTab='MQ';
+  //       this.currentRes=tabs.MQ;
+  //       break;
+  //     }
+  //     case 'DB2': {
+  //       this.currentTab='DB2';
+  //       this.currentRes=tabs.DB2;
+  //       break;
+  //     }
+  //     case 'FTP': {
+  //       this.currentTab='FTP';
+  //       this.currentRes=tabs.FTP;
+  //       break;
+  //     }
+  //   }
+  //   document.getElementById(this.currentTab).classList.add('tabsButtonClicked');
+  // }
 
   clearText() {
     switch (this.currentTab) {

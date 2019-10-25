@@ -1,11 +1,12 @@
 .mainTab {
-  border: 1px solid;
   border-radius: 5px;
   margin-top: 50px;
-  width:25%;
+  width:80%;
   margin-left:auto;
   margin-right:auto;
-  background-color: #E6E6E6;
+  background-color: black;
+  border: 2px solid #00b140;
+  font-family: "Lucida Console";
 }
 .tabsTab {
   padding-top: 10px;
@@ -15,19 +16,28 @@
 }
 
 input {
-  width: 200px;
+  -moz-appearance: none;
+  outline: none;
+  width: 450px;
+  border: 2px solid white;
+  color: #00b140;
+  background-color: black;
 }
 
 textarea {
   -moz-appearance: none;
   outline: none;
   resize: none;
-  height: 50px;
-  width: 200px;
+  height: 350px;
+  width: 450px;
+  background-color: black;
+  border: 2px solid white;
+  color: #00b140;
 
 }
 .io {
-  text-align:center
+  text-align:center;
+  color:#00b140;
 }
 
 .tabsButtons {
@@ -56,9 +66,9 @@ textarea {
 .ioButtons {
   -moz-appearance: none;
   outline: none;
-  background-color: white;
+  background-color: #00b140;
   border-radius: 5px;
-  border: 1px solid;
+  border: none;
   color: black;
   padding: 5px 15px;
   font-size: 16px;
@@ -67,10 +77,10 @@ textarea {
 .ioButtons:active {
   -moz-appearance: none;
   outline: none;
-  background-color: black;
+  background-color: white;
   border-radius: 5px;
-  border: 1px solid black;
-  color: white;
+  border: none;
+  color: black;
   padding: 5px 15px;
   font-size: 16px;
 }

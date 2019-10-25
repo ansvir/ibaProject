@@ -1,33 +1,34 @@
 <table class="mainTab">
-  <table class="tabsTab">
-    <tr>
-      <th>
-        <button (click)="tabPressed('IMS')" id="IMS" class="tabsButtons">IMS</button>
-      </th>
-      <th>
-        <button (click)="tabPressed('CICS')" id="CICS" class="tabsButtons">CICS</button>
-      </th>
-      <th>
-        <button (click)="tabPressed('MQ')" id="MQ" class="tabsButtons">MQ</button>
-      </th>
-      <th>
-       <button (click)="tabPressed('DB2')" id="DB2" class="tabsButtons">DB2</button>
-      </th>
-      <th>
-       <button (click)="tabPressed('FTP')" id="FTP" class="tabsButtons">FTP</button>
-      </th>
-    </tr>
-  </table>
+  <app-subsystem-component></app-subsystem-component>
+
+  <!--<table class="tabsTab">-->
+    <!--<tr>-->
+      <!--<th>-->
+        <!--<button (click)="tabPressed('IMS')" id="IMS" class="tabsButtons">IMS</button>-->
+      <!--</th>-->
+      <!--<th>-->
+        <!--<button (click)="tabPressed('CICS')" id="CICS" class="tabsButtons">CICS</button>-->
+      <!--</th>-->
+      <!--<th>-->
+        <!--<button (click)="tabPressed('MQ')" id="MQ" class="tabsButtons">MQ</button>-->
+      <!--</th>-->
+      <!--<th>-->
+       <!--<button (click)="tabPressed('DB2')" id="DB2" class="tabsButtons">DB2</button>-->
+      <!--</th>-->
+      <!--<th>-->
+       <!--<button (click)="tabPressed('FTP')" id="FTP" class="tabsButtons">FTP</button>-->
+      <!--</th>-->
+    <!--</tr>-->
+  <!--</table>-->
+
   <div class="io">
     <p>
-      Input:
       <input type="text" name="input" [(ngModel)]="userInput" (keydown)="keyPressed($event)">&nbsp;
       <button (click)="enterButtonPressed()" class="ioButtons">
         enter
       </button>
     </p>
     <p>
-      Output:
       <textarea readonly>{{currentRes}}</textarea>&nbsp;
       <button (click)="clearText()" class="ioButtons">
         clear
