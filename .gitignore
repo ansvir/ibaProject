@@ -1,3 +1,5 @@
 .idea/
 apache-tomcat-8.5.47/
 *.iml
+target/
+resources/
