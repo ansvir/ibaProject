@@ -1,31 +1,9 @@
 
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {TabsComponent} from './tabs/tabs.component';
-
-export let tabs =
-  {
-    IMS: {
-      title:'IMS',
-      result:''
-    },
-    CICS: {
-      title:'CICS',
-      result:''
-    },
-    MQ: {
-      title:'CICS',
-      result:''
-    },
-    DB2: {
-      title:'CICS',
-      result:''
-    },
-    FTP: {
-      title:'CICS',
-      result:''
-    }
-  };
+import {Component} from '@angular/core';
+import {Subsystem} from './data/Subsystem';
+import {PostService} from './services/post.service';
+import {Command} from './data/Command';
+import {GetService} from './services/get.service';
 
 @Component({
   selector: 'app-root',
@@ -35,98 +13,50 @@ export let tabs =
 
 export class AppComponent{
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private postService: PostService, private getService: GetService) { }
 
-  userInput='';
-  // currentTab='IMS';
   currentRes='';
-  currentTab;
-  commands;
-  subsystems;
+  command: string;
+  subsystem: Subsystem;
+  connectionError='Error while connecting to localhost:8080';
 
-  receiveFromChild(event){
-    this.subsystems = event;
+  enterButtonPressed(command) {
+    this.enterPressed(command);
   }
 
-  enterButtonPressed() {
-
-    // this.httpClient.post('http://localhost:8080/subsystems/commands',this.commands )
-    //   .subscribe();
-
-    this.enterPressed();
-  }
-
-  keyPressed(event) {
+  keyPressed(event, command) {
     if(event.key==='Enter') {
-      this.enterPressed();
+      this.enterPressed(command);
     }
   }
 
-  enterPressed() {
-    console.log(this.subsystems);
-
-    this.currentRes+=this.subsystems.name+'\n';
-
-
-    // if(this.userInput!=='') {
-    //   switch (this.currentTab) {
-    //     case 'IMS': {
-    //       tabs.IMS += this.userInput + '\n';
-    //       this.currentRes = tabs.IMS;
-    //       break;
-    //     }
-    //     case 'CICS': {
-    //       tabs.CICS += this.userInput + '\n';
-    //       this.currentRes = tabs.CICS;
-    //       break;
-    //     }
-    //     case 'MQ': {
-    //       tabs.MQ += this.userInput + '\n';
-    //       this.currentRes = tabs.MQ;
-    //       break;
-    //     }
-    //     case 'DB2': {
-    //       tabs.DB2 += this.userInput + '\n';
-    //       this.currentRes = tabs.DB2;
-    //       break;
-    //     }
-    //     case 'FTP': {
-    //       tabs.FTP += this.userInput + '\n';
-    //       this.currentRes = tabs.FTP;
-    //       break;
-    //     }
-    //   }
-    //   this.userInput = '';
-    // }
+  enterPressed(command) {
+    const cmd = new Command(this.subsystem.id, command);
+    console.log(cmd);
+    try {
+      this.postService.postCommand(cmd)
+        .subscribe(
+          (data: Command) => {console.log(data);
+          },
+          error => console.log(error)
+        );
+    } catch (exception) {
+      this.currentRes+=this.connectionError;
+    }
+    try {
+      this.getService.getCommand().subscribe((data: Command) => {
+      });
+      this.currentRes+=this.subsystem.name+' '+command+' command result must be here\n';
+    } catch (exception) {
+      this.currentRes+=this.connectionError+'\n';
+    }
   }
 
-  clearText() {
-    // switch (this.currentTab) {
-    //   case 'IMS': {
-    //     tabs.IMS='';
-    //     this.currentRes=tabs.IMS;
-    //     break;
-    //   }
-    //   case 'CICS': {
-    //     tabs.CICS='';
-    //     this.currentRes=tabs.CICS;
-    //     break;
-    //   }
-    //   case 'MQ': {
-    //     tabs.MQ='';
-    //     this.currentRes=tabs.MQ;
-    //     break;
-    //   }
-    //   case 'DB2': {
-    //     tabs.DB2='';
-    //     this.currentRes=tabs.DB2;
-    //     break;
-    //   }
-    //   case 'FTP': {
-    //     tabs.FTP='';
-    //     this.currentRes=tabs.FTP;
-    //     break;
-    //   }
-    // }
+  clearText(subsystem) {
   }
+
+  receiveSubsFromChild(event){
+    this.subsystem = event;
+  }
+
 }

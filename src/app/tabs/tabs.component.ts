@@ -1,5 +1,6 @@
-import {Component, OnInit, Injectable, Output, EventEmitter, Input} from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Component, OnInit, Injectable, Output, EventEmitter} from '@angular/core';
+import {GetService} from '../services/get.service';
+import {Subsystem} from '../data/Subsystem';
 
 @Component({
   selector: 'app-tabs-component',
@@ -11,24 +12,29 @@ import { HttpClient } from '@angular/common/http';
 export class TabsComponent implements OnInit {
 
   @Output()
-  outToParent = new EventEmitter<string>();
+  subsOutToParent = new EventEmitter<Subsystem>();
 
-  subsystems: [];
+  subsystems: Subsystem[];
+  currentTabId;
 
-  commands;
-  tabId='0';
-
-
-  constructor(private httpClient: HttpClient) { }
+  constructor(private gs: GetService) { }
   ngOnInit() {
-    this.httpClient.get('http://localhost:8080/subsystems/subsystems')
-      .subscribe((data) => {
-        this.subsystems=data as [];
+    try {
+      this.gs.getSubsystems().subscribe((data: []) => {
+        this.subsystems = data;
+        this.currentTabId='0';
+        this.subsOutToParent.emit(this.subsystems[this.currentTabId]);
       });
+    } catch (exception) {
+      console.log(exception);
+    }
+    finally {
+      this.currentTabId='0';
+    }
   }
 
   tabPressed(id) {
-    this.tabId=id;
-    this.outToParent.emit(this.subsystems[id]);
+    this.currentTabId=id;
+    this.subsOutToParent.emit(this.subsystems[id]);
   }
 }

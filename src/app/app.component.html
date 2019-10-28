@@ -1,10 +1,10 @@
-<table class="mainTab">
-  <app-tabs-component (outToParent)="receiveFromChild($event)"></app-tabs-component>
+<div class="mainForm">
+  <app-tabs-component (subsOutToParent)="receiveSubsFromChild($event)"></app-tabs-component>
   <hr>
   <div class="io">
     <p>
-      <input type="text" name="input" [(ngModel)]="userInput" (keydown)="keyPressed($event)">&nbsp;
-      <button (click)="enterButtonPressed()" class="ioButtons">
+      <input type="text" name="input" [(ngModel)]="command" (keydown)="keyPressed($event, command)" autofocus>&nbsp;
+      <button (click)="enterButtonPressed(command)" class="ioButtons">
         enter
       </button>
     </p>
@@ -15,6 +15,6 @@
       </button>
     </p>
   </div>
-</table>
+</div>
 
 

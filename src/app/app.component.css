@@ -1,24 +1,18 @@
-.mainTab {
+.mainForm {
   border-radius: 5px;
   margin-top: 50px;
-  width:60%;
+  width:800px;
   margin-left:auto;
   margin-right:auto;
   background-color: black;
   border: 2px solid #00b140;
   font-family: monospace;
 }
-.tabsTab {
-  padding-top: 10px;
-  width:25%;
-  margin-left:auto;
-  margin-right:auto;
-}
 
 input {
   -moz-appearance: none;
   outline: none;
-  width: 450px;
+  width: 620px;
   border: 2px solid white;
   color: #00b140;
   background-color: black;
@@ -30,7 +24,7 @@ textarea {
   outline: none;
   resize: none;
   height: 350px;
-  width: 450px;
+  width: 620px;
   background-color: black;
   border: 2px solid white;
   color: #00b140;
@@ -40,29 +34,6 @@ textarea {
 .io {
   text-align:center;
   color:#00b140;
-}
-
-.tabsButtons {
-  -moz-appearance: none;
-  outline: none;
-  background-color: white;
-  border-radius: 5px;
-  border: 1px solid;
-  color: black;
-  padding: 10px 15px;
-  font-size: 20px;
-}
-
-.tabsButtonClicked {
-  font-weight: bold;
-  -moz-appearance: none;
-  outline: none;
-  background-color: black;
-  border-radius: 5px;
-  border: 1px solid black;
-  color: white;
-  padding: 10px 15px;
-  font-size: 20px;
 }
 
 .ioButtons {
@@ -91,5 +62,4 @@ hr {
   border: none;
   height: 2px;
   background-color: #00b140;
-  color: #00b140;
 }
