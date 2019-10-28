@@ -36,8 +36,7 @@ export class AppComponent{
     try {
       this.postService.postCommand(cmd)
         .subscribe(
-          (data: Command) => {console.log(data);
-          },
+          (data: Command) => {},
           error => console.log(error)
         );
     } catch (exception) {
