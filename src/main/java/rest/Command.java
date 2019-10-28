@@ -1,15 +1,13 @@
 package rest;
 
 public class Command {
-
-    private Long id;
-    private String subsystem_id;
+    private int id;
+    private int subsystem_id;
     private String command;
     private String result;
-
     private String timestamp;
 
-    public Command(long id, String subsystem_id, String command, String result, String timestamp) {
+    public Command(int id, int subsystem_id, String command, String result, String timestamp) {
         this.id = id;
         this.subsystem_id = subsystem_id;
         this.command = command;
@@ -17,28 +15,24 @@ public class Command {
         this.timestamp=timestamp;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id=id;
     }
 
-    public String getSubsystem_id() {
+    public int getSubsystem_id() {
         return subsystem_id;
     }
 
-    public void setSubsystem_id(String subsystem_id) {
+    public void setSubsystem_id(int subsystem_id) {
         this.subsystem_id = subsystem_id;
     }
 
     public String getCommand() {
         return command;
-    }
-
-    public void setId(String url) {
-        this.command =url;
     }
 
     public void setCommand(String command) {

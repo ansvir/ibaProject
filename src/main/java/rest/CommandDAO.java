@@ -7,6 +7,7 @@ public class CommandDAO {
 
     private static List<Command> command;
     {
+        command=new ArrayList<>();
     }
 
     /**
@@ -26,10 +27,10 @@ public class CommandDAO {
      *            customer id
      * @return command object for given id
      */
-    public Command get(Long id) {
+    public Command get(int id) {
 
         for (Command c : command) {
-            if (c.getId().equals(id)) {
+            if (c.getId()==id) {
                 return c;
             }
         }
@@ -43,8 +44,8 @@ public class CommandDAO {
      * @return command object with updated id
      */
     public Command create(Command newCommand) {
-        newCommand.setId(System.currentTimeMillis());
         command.add(newCommand);
+        System.out.println("new command entered: \n"+newCommand.getId()+"\n"+newCommand.getCommand()+"\n"+newCommand.getTimestamp()+"\n");
         return newCommand;
     }
 
@@ -56,10 +57,10 @@ public class CommandDAO {
      *            the customer id
      * @return id of deleted command object
      */
-    public Long delete(Long id) {
+    public Integer delete(int id) {
 
         for (Command c : command) {
-            if (c.getId().equals(id)) {
+            if (c.getId()==id) {
                 command.remove(c);
                 return id;
             }
@@ -76,10 +77,10 @@ public class CommandDAO {
      * @param newCommand
      * @return command object with id
      */
-    public Command update(Long id, Command newCommand) {
+    public Command update(int id, Command newCommand) {
 
         for (Command c : command) {
-            if (c.getId().equals(id)) {
+            if (c.getId()==id) {
                 newCommand.setId(c.getId());
                 command.remove(c);
                 command.add(newCommand);
