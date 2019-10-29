@@ -25,6 +25,7 @@
     "one-line": false,
     "comment-format": false,
     "no-trailing-whitespace": false,
-    "forin": false
+    "forin": false,
+    "variable-name": false
   }
 }

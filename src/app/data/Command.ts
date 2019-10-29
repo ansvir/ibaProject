@@ -1,17 +1,14 @@
 export class Command {
 
-  private static idCounter=0;
   private id: number;
-  private subsystemId: number;
+  private subsystem_id: number;
   private command: string;
   private result: string;
   private timestamp: string;
 
-  constructor(subsystemId, command) {
+  constructor(subsystem_id, command) {
     const date = new Date();
-    Command.idCounter++;
-    this.id=Command.idCounter;
-    this.subsystemId=subsystemId;
+    this.subsystem_id=subsystem_id;
     this.command=command;
     this.timestamp=date.getDate()+'-'+date.getMonth()+'-'+date.getFullYear()+' '
       +date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
@@ -27,11 +24,11 @@ export class Command {
   }
 
   getSubsystemId(): number {
-    return this.subsystemId;
+    return this.subsystem_id;
   }
 
   setSubsystemId(value: number) {
-    this.subsystemId = value;
+    this.subsystem_id = value;
   }
 
   getCommand(): string {
