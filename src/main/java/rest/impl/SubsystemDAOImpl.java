@@ -3,21 +3,33 @@ package rest.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import rest.model.Subsystem;
 import rest.dao.SubsystemDAO;
 
+import javax.sql.DataSource;
+
 @Component
 public class SubsystemDAOImpl implements SubsystemDAO{
+
+
+    private DataSource dataSource;
+    private JdbcTemplate jdbcTemplate;
+
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
+    }
 
     private static List<Subsystem> subsystem;
     {
         subsystem = new ArrayList<Subsystem>();
-        subsystem.add(new Subsystem(1, "IMS", "IMS"));
-        subsystem.add(new Subsystem(2, "CICS", "CICS"));
-        subsystem.add(new Subsystem(3, "MQ", "MQ"));
-        subsystem.add(new Subsystem(4, "DB2", "DB2"));
-        subsystem.add(new Subsystem(5, "FTP", "FTP"));
+        subsystem.add(new Subsystem(1, "IMS"));
+        subsystem.add(new Subsystem(2, "CICS"));
+        subsystem.add(new Subsystem(3, "MQ"));
+        subsystem.add(new Subsystem(4, "DB2"));
+        subsystem.add(new Subsystem(5, "FTP"));
     }
 
     public List<Subsystem> listSubsystems() {

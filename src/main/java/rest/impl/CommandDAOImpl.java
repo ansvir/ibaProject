@@ -1,5 +1,6 @@
 package rest.impl;
 
+import org.springframework.jdbc.core.JdbcTemplate;
 import rest.dao.CommandDAO;
 import rest.model.Command;
 
@@ -14,8 +15,13 @@ public class CommandDAOImpl implements CommandDAO {
         commands=new ArrayList<>();
     }
 
-//    private DataSource dataSource;
-//    private JdbcTemplate
+    private DataSource dataSource;
+    private JdbcTemplate jdbcTemplate;
+
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
+    }
 
     public List<Command> listCommands() {
         return commands;
@@ -38,7 +44,6 @@ public class CommandDAOImpl implements CommandDAO {
         }
         return "Command not found";
     }
-
 
     public Command createCommand(Command newCommand) {
         commands.add(newCommand);

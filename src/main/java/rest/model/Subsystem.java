@@ -4,15 +4,13 @@ public class Subsystem {
 
     private int id;
     private String name;
-    private String url;
 
-    public Subsystem(int id, String name, String url) {
+    public Subsystem(int id, String name) {
         this.id = id;
         this.name = name;
-        this.url = url;
     }
 
-    Subsystem() {}
+    public Subsystem() {}
 
     public int getId() {
         return id;
@@ -30,11 +28,4 @@ public class Subsystem {
         this.name=name;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setId(String url) {
-        this.url=url;
-    }
 }

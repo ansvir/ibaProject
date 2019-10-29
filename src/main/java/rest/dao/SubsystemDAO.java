@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface SubsystemDAO{
 
-//    public void setDataSource(DataSource dataSource);
+    public void setDataSource(DataSource dataSource);
 
     public List<Subsystem> listSubsystems();
 

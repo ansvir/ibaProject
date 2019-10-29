@@ -6,13 +6,15 @@ import java.util.List;
 
 public interface CommandDAO{
 
-//    public void setDataSource(DataSource dataSource);
+    public void setDataSource(DataSource dataSource);
 
     public List<Command> listCommands();
 
     public Command getById(Integer id);
 
     public String getResultByName(String command);
+
+//    public String getResultsByName (String command);
 
     public Command createCommand(Command command);
 
