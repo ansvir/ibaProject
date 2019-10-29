@@ -1,4 +1,4 @@
-package rest;
+package rest.model;
 
 public class Command {
     private int id;
@@ -7,6 +7,7 @@ public class Command {
     private String result;
     private String timestamp;
 
+
     public Command(int id, int subsystem_id, String command, String result, String timestamp) {
         this.id = id;
         this.subsystem_id = subsystem_id;
@@ -14,6 +15,8 @@ public class Command {
         this.result=result;
         this.timestamp=timestamp;
     }
+
+    public Command() {}
 
     public int getId() {
         return id;

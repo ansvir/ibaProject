@@ -1,22 +1,24 @@
-package rest;
+package rest.model;
 
 public class Subsystem {
 
-    private Long id;
+    private int id;
     private String name;
     private String url;
 
-    public Subsystem(long id, String name, String url) {
+    public Subsystem(int id, String name, String url) {
         this.id = id;
         this.name = name;
         this.url = url;
     }
 
-    public Long getId() {
+    Subsystem() {}
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id=id;
     }
 
