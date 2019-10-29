@@ -3,6 +3,7 @@ package rest.impl;
 import rest.dao.CommandDAO;
 import rest.model.Command;
 
+import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,9 @@ public class CommandDAOImpl implements CommandDAO {
     {
         commands=new ArrayList<>();
     }
+
+//    private DataSource dataSource;
+//    private JdbcTemplate
 
     public List<Command> listCommands() {
         return commands;
@@ -27,17 +31,14 @@ public class CommandDAOImpl implements CommandDAO {
         return null;
     }
 
-    public List<Command> getByCommand(String command) {
+    public String getResultByName(String command) {
 
-        List<Command> commandsByCommand=new ArrayList<Command>();
-        for (Command c : commands) {
-            if (c.getCommand().equals(command)) {
-                commandsByCommand.add(c);
-            }
+        for(Command c: commands) {
+            if(c.getCommand().equals(command)) return c.getResult();
         }
-
-        return commandsByCommand.isEmpty()?null:commandsByCommand;
+        return "Command not found";
     }
+
 
     public Command createCommand(Command newCommand) {
         commands.add(newCommand);

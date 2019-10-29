@@ -1,8 +1,12 @@
 package rest.dao;
 import rest.model.Subsystem;
+
+import javax.sql.DataSource;
 import java.util.List;
 
 public interface SubsystemDAO{
+
+//    public void setDataSource(DataSource dataSource);
 
     public List<Subsystem> listSubsystems();
 
