@@ -3,6 +3,7 @@ package rest.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import rest.model.Subsystem;
@@ -17,9 +18,18 @@ public class SubsystemDAOImpl implements SubsystemDAO{
     private DataSource dataSource;
     private JdbcTemplate jdbcTemplate;
 
+    @Override
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate=jdbcTemplate;
+    }
+
+    public JdbcTemplate getJdbcTemplate() {
+        return this.jdbcTemplate;
     }
 
     private static List<Subsystem> subsystem;

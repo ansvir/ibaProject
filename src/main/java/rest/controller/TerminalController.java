@@ -88,9 +88,7 @@ public class TerminalController {
 
     @PostMapping
     public ResponseEntity<?> createCommand(@RequestBody Command command) {
-
         commandDAOImpl.createCommand(command);
-        System.out.println("new command entered: \n"+command.getId()+"\n"+command.getCommand()+"\n"+command.getTimestamp()+"\n");
         return new ResponseEntity<Command>(command, HttpStatus.OK);
     }
 

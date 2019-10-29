@@ -18,9 +18,18 @@ public class CommandDAOImpl implements CommandDAO {
     private DataSource dataSource;
     private JdbcTemplate jdbcTemplate;
 
+    @Override
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
+        this.jdbcTemplate=new JdbcTemplate(dataSource);
+    }
+
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate=jdbcTemplate;
+    }
+
+    public JdbcTemplate getJdbcTemplate() {
+        return this.jdbcTemplate;
     }
 
     public List<Command> listCommands() {
@@ -46,7 +55,11 @@ public class CommandDAOImpl implements CommandDAO {
     }
 
     public Command createCommand(Command newCommand) {
+
+        String query="INSERT INTO commands (subsystem_id,command,result,timestamp) VALUES (?,?,?,?)";
+        jdbcTemplate.update(query,newCommand.getSubsystem_id(),newCommand.getCommand(),newCommand.getResult(),newCommand.getTimestamp());
         commands.add(newCommand);
+        System.out.println("Command added:\n"+newCommand.getId()+"\n"+newCommand.getCommand()+"\n");
         return newCommand;
     }
 
