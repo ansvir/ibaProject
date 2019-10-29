@@ -20,18 +20,18 @@ export class AppComponent{
   subsystem: Subsystem;
   connectionError='Error while connecting to localhost:8080';
 
-  enterButtonPressed(command) {
-    this.enterPressed(command);
+  enterButtonPressed() {
+    this.enterPressed();
   }
 
-  keyPressed(event, command) {
+  keyPressed(event) {
     if(event.key==='Enter') {
-      this.enterPressed(command);
+      this.enterPressed();
     }
   }
 
-  enterPressed(command) {
-    const cmd = new Command(this.subsystem.id, command);
+  enterPressed() {
+    const cmd = new Command(this.subsystem.id, this.command);
     console.log(cmd);
     try {
       this.postService.postCommand(cmd)
@@ -40,15 +40,14 @@ export class AppComponent{
           error => console.log(error)
         );
     } catch (exception) {
+      console.log(exception);
       this.currentRes+=this.connectionError;
     }
-    try {
-      this.getService.getCommand().subscribe((data: Command) => {
-      });
-      this.currentRes+=this.subsystem.name+' '+command+' command result must be here\n';
-    } catch (exception) {
-      this.currentRes+=this.connectionError+'\n';
-    }
+
+    this.currentRes+=this.subsystem.name+' '+this.command+' command result must be here\n';
+
+
+    this.command='';
   }
 
   clearText(subsystem) {
