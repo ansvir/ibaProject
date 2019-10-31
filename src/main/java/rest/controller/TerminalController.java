@@ -10,6 +10,7 @@ import rest.impl.SubsystemDAOImpl;
 import rest.model.Command;
 import rest.model.Subsystem;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class TerminalController {
 

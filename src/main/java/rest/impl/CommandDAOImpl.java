@@ -5,8 +5,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import rest.dao.CommandDAO;
 import rest.model.Command;
-
-import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +46,7 @@ public class CommandDAOImpl implements CommandDAO {
         String query="INSERT INTO commands (subsystem_id,command,result,timestamp) VALUES (?,?,?,?)";
         jdbcTemplate.update(query,newCommand.getSubsystem_id(),newCommand.getCommand(),newCommand.getResult(),newCommand.getTimestamp());
         commands.add(newCommand);
-        System.out.println("Command added:\n"+newCommand.getId()+"\n"+newCommand.getCommand()+"\n");
+        System.out.println("Command added:\n"+newCommand.getSubsystem_id()+"\n"+newCommand.getCommand()+"\n"+newCommand.getTimestamp()+"\n");
         return newCommand;
     }
 
