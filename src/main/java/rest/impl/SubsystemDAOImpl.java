@@ -9,28 +9,11 @@ import org.springframework.stereotype.Component;
 import rest.model.Subsystem;
 import rest.dao.SubsystemDAO;
 
-import javax.sql.DataSource;
-
 @Component
 public class SubsystemDAOImpl implements SubsystemDAO{
 
-
-    private DataSource dataSource;
+    @Autowired
     private JdbcTemplate jdbcTemplate;
-
-    @Override
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }
-
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate=jdbcTemplate;
-    }
-
-    public JdbcTemplate getJdbcTemplate() {
-        return this.jdbcTemplate;
-    }
 
     private static List<Subsystem> subsystem;
     {

@@ -6,8 +6,6 @@ import java.util.List;
 
 public interface CommandDAO{
 
-    public void setDataSource(DataSource dataSource);
-
     public List<Command> listCommands();
 
     public Command getById(Integer id);

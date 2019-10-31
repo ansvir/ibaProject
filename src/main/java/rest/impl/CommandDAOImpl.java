@@ -1,6 +1,8 @@
 package rest.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 import rest.dao.CommandDAO;
 import rest.model.Command;
 
@@ -8,6 +10,7 @@ import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class CommandDAOImpl implements CommandDAO {
 
     private static List<Command> commands;
@@ -15,22 +18,8 @@ public class CommandDAOImpl implements CommandDAO {
         commands=new ArrayList<>();
     }
 
-    private DataSource dataSource;
+    @Autowired
     private JdbcTemplate jdbcTemplate;
-
-    @Override
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
-        this.jdbcTemplate=new JdbcTemplate(dataSource);
-    }
-
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate=jdbcTemplate;
-    }
-
-    public JdbcTemplate getJdbcTemplate() {
-        return this.jdbcTemplate;
-    }
 
     public List<Command> listCommands() {
         return commands;
