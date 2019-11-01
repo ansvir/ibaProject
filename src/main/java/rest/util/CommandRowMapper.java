@@ -5,7 +5,7 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CommandMapper implements RowMapper{
+public class CommandRowMapper implements RowMapper{
 
     @Override
     public Command mapRow(ResultSet rs, int rowNum) throws SQLException {

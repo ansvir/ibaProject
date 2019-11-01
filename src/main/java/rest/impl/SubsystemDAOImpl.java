@@ -51,6 +51,15 @@ public class SubsystemDAOImpl implements SubsystemDAO{
         return subsystemsByName.isEmpty()?null:subsystemsByName;
     }
 
+    public Integer getIdByName(String name) {
+        for(Subsystem s: subsystem) {
+            if(s.getName().equals(name))
+                System.out.println(name+" "+s.getId());
+                return s.getId();
+        }
+        return null;
+    }
+
     public Subsystem createSubsystem(Subsystem newSubsystem) {
         subsystem.add(newSubsystem);
         return newSubsystem;

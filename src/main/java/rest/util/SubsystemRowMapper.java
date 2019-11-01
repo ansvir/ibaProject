@@ -6,7 +6,7 @@ import rest.model.Subsystem;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class SubsystemMapper implements RowMapper {
+public class SubsystemRowMapper implements RowMapper {
 
     @Override
     public Subsystem mapRow(ResultSet rs, int rowNum) throws SQLException {

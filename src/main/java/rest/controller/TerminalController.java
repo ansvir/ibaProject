@@ -1,5 +1,6 @@
 package rest.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,7 +29,7 @@ public class TerminalController {
     }
 
     @GetMapping("/subsystems/{id}")
-    public ResponseEntity<?> getSubsystems(@PathVariable("id") int id) {
+    public ResponseEntity<?> getSubsystem(@PathVariable("id") int id) {
 
         Subsystem subsystem= subsystemDAOImpl.getById(id);
         if (subsystem==null) {
@@ -38,16 +39,16 @@ public class TerminalController {
         return new ResponseEntity<Subsystem>(subsystem, HttpStatus.OK);
     }
 
-    @GetMapping("/subsystems/{name}")
-    public ResponseEntity<?> getSubsystems(@PathVariable("name") String name) {
-
-        List<Subsystem> subsystems= subsystemDAOImpl.getByName(name);
-        if (subsystems.isEmpty()) {
-            return new ResponseEntity<String>("No subsystem found for name " + name, HttpStatus.NOT_FOUND);
-        }
-
-        return new ResponseEntity<List<Subsystem>>(subsystems, HttpStatus.OK);
-    }
+//    @GetMapping("/subsystems/{name}")
+//    public ResponseEntity<?> getSubsystem(@PathVariable("name") String name) {
+//
+//        List<Subsystem> subsystems= subsystemDAOImpl.getByName(name);
+//        if (subsystems.isEmpty()) {
+//            return new ResponseEntity<String>("No subsystem found for name " + name, HttpStatus.NOT_FOUND);
+//        }
+//
+//        return new ResponseEntity<List<Subsystem>>(subsystems, HttpStatus.OK);
+//    }
 
     @PostMapping(value = "/subsystems")
     public ResponseEntity<?> createSubsystem(@RequestBody Subsystem subsystem) {
@@ -83,8 +84,10 @@ public class TerminalController {
     //commands
 
     @GetMapping("/subsystems/{name}/result")
-    public String getCommandResult(@PathVariable("name") String name) {
-        return commandDAOImpl.getResultByName(name);
+    public List<Command> getResultsBySubsystem(@PathVariable("name") String name) {
+        List<Command> lc=new ArrayList<>();
+        lc=commandDAOImpl.getResultsBySubsystem(subsystemDAOImpl.getIdByName(name));
+        return lc;
     }
 
     @PostMapping

@@ -1,10 +1,16 @@
 package rest.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.ColumnMapRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 import rest.dao.CommandDAO;
 import rest.model.Command;
+import rest.util.CommandRowMapper;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,12 +39,17 @@ public class CommandDAOImpl implements CommandDAO {
         return null;
     }
 
-    public String getResultByName(String command) {
-
-        for(Command c: commands) {
-            if(c.getCommand().equals(command)) return c.getResult();
-        }
-        return "Command not found";
+    public List<Command> getResultsBySubsystem(Integer id) {
+        String query="SELECT * FROM commands WHERE subsystem_id = ?";
+        return jdbcTemplate.query(query,new Object[]{id},new CommandRowMapper());
+//                new RowMapper<Command>() {
+//            public Command mapRow(ResultSet rs, int rowNum) throws SQLException {
+//                Command command = new Command();
+//                command.setCommand(rs.getString("command"));
+//                command.setResult(rs.getString("result"));
+//                return command;
+//            }
+//        });
     }
 
     public Command createCommand(Command newCommand) {
@@ -46,8 +57,12 @@ public class CommandDAOImpl implements CommandDAO {
         String query="INSERT INTO commands (subsystem_id,command,result,timestamp) VALUES (?,?,?,?)";
         jdbcTemplate.update(query,newCommand.getSubsystem_id(),newCommand.getCommand(),newCommand.getResult(),newCommand.getTimestamp());
         commands.add(newCommand);
-        System.out.println("Command added:\n"+newCommand.getSubsystem_id()+"\n"+newCommand.getCommand()+"\n"+newCommand.getTimestamp()+"\n");
         return newCommand;
+    }
+
+    public void deleteCommandsBySubsystem(Integer subsystem_id) {
+        String query="DELETE FROM commands WHERE subsystem_id = ?";
+        jdbcTemplate.update(query,subsystem_id);
     }
 
     public Integer deleteCommand(Integer id) {

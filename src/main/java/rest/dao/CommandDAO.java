@@ -10,11 +10,11 @@ public interface CommandDAO{
 
     public Command getById(Integer id);
 
-    public String getResultByName(String command);
-
-//    public String getResultsByName (String command);
+    public List<Command> getResultsBySubsystem(Integer id);
 
     public Command createCommand(Command command);
+
+    public void deleteCommandsBySubsystem(Integer subsystem_id);
 
     public Integer deleteCommand(Integer id);
 
