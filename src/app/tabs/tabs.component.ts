@@ -12,7 +12,7 @@ import {Subsystem} from '../data/Subsystem';
 export class TabsComponent implements OnInit {
 
   @Output()
-  subsOutToParent = new EventEmitter<Subsystem>();
+  subOutToParent = new EventEmitter<Subsystem>();
 
   subsystems: Subsystem[];
   currentTabId;
@@ -23,7 +23,7 @@ export class TabsComponent implements OnInit {
       this.gs.getSubsystems().subscribe((data: []) => {
         this.subsystems = data;
         this.currentTabId='0';
-        this.subsOutToParent.emit(this.subsystems[this.currentTabId]);
+        this.subOutToParent.emit(this.subsystems[this.currentTabId]);
       });
     } catch (exception) {
       console.log(exception);
@@ -35,6 +35,6 @@ export class TabsComponent implements OnInit {
 
   tabPressed(id) {
     this.currentTabId=id;
-    this.subsOutToParent.emit(this.subsystems[id]);
+    this.subOutToParent.emit(this.subsystems[id]);
   }
 }

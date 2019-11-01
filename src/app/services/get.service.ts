@@ -13,8 +13,8 @@ export class GetService {
     return this.httpClient.get('http://localhost:8080/subsystems');
   }
 
-  getCommand() {
-    return this.httpClient.get('http://localhost:8080/commands');
+  getResultsBySubsystem(name: string) {
+    return this.httpClient.get('http://localhost:8080/subsystems/{name}/result');
   }
 
 }

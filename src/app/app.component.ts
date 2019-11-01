@@ -13,12 +13,42 @@ import {GetService} from './services/get.service';
 
 export class AppComponent{
 
-  constructor(private postService: PostService, private getService: GetService) { }
+  constructor(private postService: PostService, private getService: GetService) {
+
+  }
 
   currentRes='';
   command: string;
   subsystem: Subsystem;
-  connectionError='Error while connecting to localhost:8080';
+  connectionError='Error while connecting to localhost:8080\n';
+  firstLoad=false;
+  results=[
+    {
+      subsystem:'IMS',
+      id:1,
+      result:''
+    },
+    {
+      subsystem:'CICS',
+      id:2,
+      result:''
+    },
+    {
+      subsystem:'MQ',
+      id:3,
+      result:''
+    },
+    {
+      subsystem:'DB2',
+      id:4,
+      result:''
+    },
+    {
+      subsystem:'FTP',
+      id:5,
+      result:''
+    }
+  ];
 
   enterButtonPressed() {
     this.enterPressed();
@@ -39,13 +69,11 @@ export class AppComponent{
           (data: Command) => {},
           error => console.log(error)
         );
+      this.currentRes+=this.subsystem.name+' '+this.command+' command result must be here\n';
     } catch (exception) {
       console.log(exception);
       this.currentRes+=this.connectionError;
     }
-
-    this.currentRes+=this.subsystem.name+' '+this.command+' command result must be here\n';
-
 
     this.command='';
   }
@@ -53,8 +81,27 @@ export class AppComponent{
   clearText(subsystem) {
   }
 
-  receiveSubsFromChild(event){
+  receiveSubFromChild(event){
     this.subsystem = event;
+    if(this.firstLoad===false) {
+      this.firstLoad=true;
+      try {
+        this.getService.getResultsBySubsystem(this.subsystem.name)
+          .subscribe(
+            (data: Command[]) => {
+              // data.forEach((command)=> {
+              //   this.currentRes=command.getCommand()+'\n'+command.getResult();
+              // });
+              console.log('v firstload');
+              console.log(data);
+            },
+            error => console.log(error)
+          );
+      } catch (exception) {
+        console.log(exception);
+        this.currentRes += this.connectionError;
+      }
+    }
   }
 
 }
