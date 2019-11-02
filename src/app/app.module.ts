@@ -6,11 +6,13 @@ import {FormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TabsComponent } from './tabs/tabs.component';
 import {HttpClientModule} from '@angular/common/http';
+import { IoComponent } from './io/io.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TabsComponent
+    TabsComponent,
+    IoComponent
   ],
   imports: [
     BrowserModule,

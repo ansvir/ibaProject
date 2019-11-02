@@ -1,20 +1,7 @@
 <div class="mainForm">
-  <app-tabs-component (subOutToParent)="receiveSubFromChild($event)"></app-tabs-component>
+  <app-tabs-component></app-tabs-component>
   <hr>
-  <div class="io">
-    <p>
-      <input type="text" name="input" [(ngModel)]="command" (keydown)="keyPressed($event)" autofocus>&nbsp;
-      <button (click)="enterButtonPressed(command)" class="ioButtons">
-        enter
-      </button>
-    </p>
-    <p>
-      <textarea readonly>{{currentRes}}</textarea>&nbsp;
-      <button (click)="clearText()" class="ioButtons">
-        clear
-      </button>
-    </p>
-  </div>
+  <app-io></app-io>
 </div>
 
 

@@ -1,6 +1,7 @@
-import {Component, OnInit, Injectable, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Injectable, Output, EventEmitter, Input} from '@angular/core';
 import {GetService} from '../services/get.service';
 import {Subsystem} from '../data/Subsystem';
+import {TerminalService} from "../services/terminal.service";
 
 @Component({
   selector: 'app-tabs-component',
@@ -11,30 +12,25 @@ import {Subsystem} from '../data/Subsystem';
 @Injectable()
 export class TabsComponent implements OnInit {
 
-  @Output()
-  subOutToParent = new EventEmitter<Subsystem>();
-
   subsystems: Subsystem[];
   currentTabId;
 
-  constructor(private gs: GetService) { }
+  constructor(private getService: GetService, private terminalService: TerminalService) { }
   ngOnInit() {
     try {
-      this.gs.getSubsystems().subscribe((data: []) => {
-        this.subsystems = data;
+      this.getService.getSubsystems().subscribe((data: []) => {
+        this.subsystems=data;
         this.currentTabId='0';
-        this.subOutToParent.emit(this.subsystems[this.currentTabId]);
+        this.terminalService.setSubsystem(this.subsystems[this.currentTabId]);
       });
     } catch (exception) {
       console.log(exception);
-    }
-    finally {
-      this.currentTabId='0';
+
     }
   }
 
   tabPressed(id) {
     this.currentTabId=id;
-    this.subOutToParent.emit(this.subsystems[id]);
+    this.terminalService.setSubsystem(this.subsystems[id]);
   }
 }
