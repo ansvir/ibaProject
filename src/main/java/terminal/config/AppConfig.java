@@ -1,4 +1,4 @@
-package rest.config;
+package terminal.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "rest")
+@ComponentScan(basePackages = "terminal")
 public class AppConfig {
 
     @Bean

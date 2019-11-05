@@ -1,7 +1,7 @@
-package rest.initializer;
+package terminal.initializer;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-import rest.config.AppConfig;
+import terminal.config.AppConfig;
 
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 

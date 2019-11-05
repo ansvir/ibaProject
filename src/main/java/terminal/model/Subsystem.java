@@ -1,4 +1,4 @@
-package rest.model;
+package terminal.model;
 
 public class Subsystem {
 
@@ -9,8 +9,6 @@ public class Subsystem {
         this.id = id;
         this.name = name;
     }
-
-    public Subsystem() {}
 
     public int getId() {
         return id;

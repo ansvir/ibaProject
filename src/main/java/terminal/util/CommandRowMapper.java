@@ -1,11 +1,11 @@
-package rest.util;
-import rest.model.Command;
+package terminal.util;
+import terminal.model.Command;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CommandRowMapper implements RowMapper{
+public class CommandRowMapper implements RowMapper<Command>{
 
     @Override
     public Command mapRow(ResultSet rs, int rowNum) throws SQLException {

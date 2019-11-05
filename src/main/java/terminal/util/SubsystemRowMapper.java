@@ -1,12 +1,12 @@
-package rest.util;
+package terminal.util;
 
 import org.springframework.jdbc.core.RowMapper;
-import rest.model.Subsystem;
+import terminal.model.Subsystem;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class SubsystemRowMapper implements RowMapper {
+public class SubsystemRowMapper implements RowMapper<Subsystem> {
 
     @Override
     public Subsystem mapRow(ResultSet rs, int rowNum) throws SQLException {

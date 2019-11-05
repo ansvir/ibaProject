@@ -1,4 +1,4 @@
-package rest.model;
+package terminal.model;
 
 public class Command {
     private int id;
