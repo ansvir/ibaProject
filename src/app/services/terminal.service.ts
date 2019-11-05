@@ -9,12 +9,12 @@ export class TerminalService{
   subsystem: Subsystem;
 
   getSubsystem() {
-    console.log('v getSubsystem terminal service');
+    console.log('getSubsystem terminal service');
     return this.subsystem;
   }
 
   setSubsystem(subsystem: Subsystem) {
-    console.log('v setSubsystem terminal service');
+    console.log('setSubsystem terminal service');
     this.subsystem=subsystem;
   }
 

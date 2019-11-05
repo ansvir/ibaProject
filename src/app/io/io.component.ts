@@ -33,7 +33,6 @@ export class IoComponent implements OnInit{
         .subscribe((data: Command[])=> {
           console.log(data);
           data.forEach((value)=> {
-            console.log('iteration '+value.getId);
             this.setCurrentResult(value.getCommand+'\n'+value.getResult+'\n');
           });
         });
@@ -67,7 +66,6 @@ export class IoComponent implements OnInit{
             console.log(data);
             this.setCurrentResult('');
             data.forEach((value)=> {
-              console.log('iteration '+value.getId);
               this.setCurrentResult(value.getCommand+'\n'+value.getResult+'\n');
             });
           });
