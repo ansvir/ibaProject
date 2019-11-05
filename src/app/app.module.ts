@@ -6,15 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TabsComponent } from './tabs/tabs.component';
 import {HttpClientModule} from '@angular/common/http';
 import { IoComponent } from './io/io.component';
-import {RouterModule, Routes} from '@angular/router';
-import {GetServiceResolver} from './services/getservice.resolver.service';
-
-const routes: Routes = [
-  { path: '', component: AppComponent, resolve: {
-      getService: GetServiceResolver
-    }
-  }
-];
 
 @NgModule({
   declarations: [
@@ -27,9 +18,8 @@ const routes: Routes = [
     FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes),
   ],
-  providers: [GetServiceResolver],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

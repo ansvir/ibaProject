@@ -10,7 +10,6 @@ export class GetService {
   constructor(private httpClient: HttpClient) {}
 
   getSubsystems() {
-    console.log('getSubsystems in GetService');
     return this.httpClient.get('http://localhost:8080/subsystems');
   }
 

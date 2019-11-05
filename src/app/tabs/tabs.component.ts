@@ -16,20 +16,20 @@ export class TabsComponent implements OnInit {
   subsystems: Subsystem[];
   currentTabId;
 
-  constructor(private getService: GetService, private terminalService: TerminalService) {}
+  constructor(private getService: GetService, private terminalService: TerminalService) {
+
+  }
+
   ngOnInit() {
-    console.log('tabs init');
     try {
-      this.getService.getSubsystems().subscribe((data: []) => {
+      this.getService.getSubsystems().toPromise().then((data: []) => {
         this.subsystems=data;
+        console.log(data);
         this.currentTabId='0';
-        console.log('before setSubsystems ngoninit tabs invoking');
         this.terminalService.setSubsystem(this.subsystems[this.currentTabId]);
       });
-      console.log('after getSubsystem nginit tabs invoking');
     } catch (exception) {
       console.log(exception);
-
     }
   }
 

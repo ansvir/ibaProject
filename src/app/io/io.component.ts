@@ -3,7 +3,6 @@ import {Command} from '../data/Command';
 import {GetService} from '../services/get.service';
 import {PostService} from '../services/post.service';
 import {TerminalService} from '../services/terminal.service';
-import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-io',
@@ -15,22 +14,19 @@ export class IoComponent implements OnInit{
 
   constructor(private getService: GetService,
               private postService: PostService,
-              private terminalService: TerminalService,
-              private route: ActivatedRoute) {}
+              private terminalService: TerminalService
+              ) {}
 
   CONNECTION_ERROR_MSG='Error while connecting to localhost:8080\n';
   inputCommand: string;
   currentResult: string;
 
-  ngOnInit(): void {
-    console.log('io init');
-    // this.route.data
-    //   .subscribe(e => this.route.data.subscribe((data: []) => console.log('Data :', data)));
+  ngOnInit() {
     this.currentResult='';
     try {
       this.getService
-        .getResultsBySubsystem(this.terminalService.getSubsystem().name)
-        .subscribe((data: Command[])=> {
+        .getResultsBySubsystem(this.terminalService.getSubsystem().name).toPromise()
+        .then((data: Command[])=> {
           console.log(data);
           data.forEach((value)=> {
             this.setCurrentResult(value.getCommand+'\n'+value.getResult+'\n');
@@ -53,7 +49,7 @@ export class IoComponent implements OnInit{
     try {
       this.postService
         .postCommand(new Command(this.terminalService.getSubsystem().id,this.inputCommand))
-          .subscribe();
+          .then();
     } catch (exception) {
       console.log(exception);
       this.addCurrentResult(this.CONNECTION_ERROR_MSG);
@@ -61,8 +57,8 @@ export class IoComponent implements OnInit{
 
     try {
       this.getService
-        .getResultsBySubsystem(this.terminalService.getSubsystem().name)
-          .subscribe((data: Command[])=> {
+        .getResultsBySubsystem(this.terminalService.getSubsystem().name).toPromise()
+          .then((data: Command[])=> {
             console.log(data);
             this.setCurrentResult('');
             data.forEach((value)=> {
