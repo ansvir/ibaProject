@@ -1,89 +1,68 @@
 import {Component, OnInit} from '@angular/core';
 import {Command} from '../data/Command';
-import {GetService} from '../services/get.service';
-import {PostService} from '../services/post.service';
 import {TerminalService} from '../services/terminal.service';
 
 @Component({
   selector: 'app-io',
   templateUrl: './io.component.html',
-  styleUrls: ['./io.component.css']
+  styleUrls: ['./io.component.css'],
 })
 
 export class IoComponent implements OnInit{
 
-  constructor(private getService: GetService,
-              private postService: PostService,
-              private terminalService: TerminalService
-              ) {}
+  constructor(private terminalService: TerminalService) {}
 
   CONNECTION_ERROR_MSG='Error while connecting to localhost:8080\n';
   inputCommand: string;
-  currentResult: string;
 
   ngOnInit() {
-    this.currentResult='';
+    console.log('child2 ngoninit');
+    this.terminalService.setCurrentResult('');
     try {
-      this.getService
-        .getResultsBySubsystem(this.terminalService.getSubsystem().name).toPromise()
-        .then((data: Command[])=> {
+      this.terminalService
+        .getResultsBySubsystem(this.terminalService.getSubsystem().name)
+        .subscribe((data: Command[])=> {
           console.log(data);
           data.forEach((value)=> {
-            this.setCurrentResult(value.getCommand+'\n'+value.getResult+'\n');
+            this.terminalService.setCurrentResult(value.getCommand+'\n'+value.getResult+'\n');
           });
         });
     }
     catch (exception) {
       console.log(exception);
-      this.addCurrentResult(this.CONNECTION_ERROR_MSG);
+      this.terminalService.addCurrentResult(this.CONNECTION_ERROR_MSG);
     }
   }
 
-  keyPressed(event) {
-    if(event.key==='Enter') {
-      this.enterPressed();
-    }
-  }
-
-  enterPressed() {
+  async enterPressed() {
     try {
-      this.postService
+      this.terminalService
         .postCommand(new Command(this.terminalService.getSubsystem().id,this.inputCommand))
           .then();
     } catch (exception) {
       console.log(exception);
-      this.addCurrentResult(this.CONNECTION_ERROR_MSG);
+      this.terminalService.addCurrentResult(this.CONNECTION_ERROR_MSG);
     }
 
     try {
-      this.getService
-        .getResultsBySubsystem(this.terminalService.getSubsystem().name).toPromise()
-          .then((data: Command[])=> {
+      this.terminalService
+        .getResultsBySubsystem(this.terminalService.getSubsystem().name)
+          .subscribe((data: Command[])=> {
             console.log(data);
-            this.setCurrentResult('');
+            this.terminalService.setCurrentResult('');
             data.forEach((value)=> {
-              this.setCurrentResult(value.getCommand+'\n'+value.getResult+'\n');
+              this.terminalService.setCurrentResult(value.getCommand+'\n'+value.getResult+'\n');
             });
           });
     }
      catch (exception) {
       console.log(exception);
-      this.addCurrentResult(this.CONNECTION_ERROR_MSG);
+      this.terminalService.addCurrentResult(this.CONNECTION_ERROR_MSG);
     }
 
     this.inputCommand='';
   }
 
   clearText(subsystem) {
-  }
-
-  getCurrentResult() {
-    return this.currentResult;
-  }
-  setCurrentResult(result: string) {
-    this.currentResult=result;
-  }
-  addCurrentResult(result: string) {
-    this.currentResult+=result;
   }
 }

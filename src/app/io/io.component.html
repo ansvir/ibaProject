@@ -1,12 +1,12 @@
 <div class="io">
   <p>
-    <input type="text" name="input" [(ngModel)]="inputCommand" (keydown)="keyPressed($event)" autofocus>&nbsp;
+    <input type="text" name="input" [(ngModel)]="inputCommand" (keyup.enter)="enterPressed()" autofocus>&nbsp;
     <button (click)="enterPressed()" class="ioButtons">
       enter
     </button>
   </p>
   <p>
-    <textarea readonly>{{currentResult}}</textarea>&nbsp;
+    <textarea readonly>{{terminalService.getCurrentResult()}}</textarea>&nbsp;
     <button (click)="clearText()" class="ioButtons">
       clear
     </button>

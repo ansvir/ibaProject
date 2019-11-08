@@ -1,9 +1,5 @@
 
-import {Component, OnInit} from '@angular/core';
-import {Subsystem} from './data/Subsystem';
-import {PostService} from './services/post.service';
-import {Command} from './data/Command';
-import {GetService} from './services/get.service';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',

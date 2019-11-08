@@ -1,7 +1,10 @@
-import {Component, OnInit, Injectable} from '@angular/core';
-import {GetService} from '../services/get.service';
+import {Component, OnInit} from '@angular/core';
 import {Subsystem} from '../data/Subsystem';
 import {TerminalService} from '../services/terminal.service';
+import {ActivatedRoute} from '@angular/router';
+import {map} from 'rxjs/operators';
+
+
 
 
 @Component({
@@ -10,22 +13,19 @@ import {TerminalService} from '../services/terminal.service';
   styleUrls: ['./tabs.component.css'],
 })
 
-@Injectable()
 export class TabsComponent implements OnInit {
 
   subsystems: Subsystem[];
   currentTabId;
 
-  constructor(private getService: GetService, private terminalService: TerminalService) {
-
-  }
-
-  ngOnInit() {
+  constructor(private terminalService: TerminalService, private actr: ActivatedRoute) {
     try {
-      this.getService.getSubsystems().toPromise().then((data: []) => {
+      this.terminalService.setCurrentResult('Connecting...');
+      this.actr.data.subscribe((data: []) => {
+        console.log('get in child1 finished');
         this.subsystems=data;
         console.log(data);
-        this.currentTabId='0';
+        this.currentTabId=0;
         this.terminalService.setSubsystem(this.subsystems[this.currentTabId]);
       });
     } catch (exception) {
@@ -33,8 +33,12 @@ export class TabsComponent implements OnInit {
     }
   }
 
+  ngOnInit() {
+  }
+
   tabPressed(id) {
     this.currentTabId=id;
     this.terminalService.setSubsystem(this.subsystems[id]);
   }
+
 }

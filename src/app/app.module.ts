@@ -6,6 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TabsComponent } from './tabs/tabs.component';
 import {HttpClientModule} from '@angular/common/http';
 import { IoComponent } from './io/io.component';
+import {ResolverModule} from './resolver.module';
+import { routing } from './resolver.module';
 
 @NgModule({
   declarations: [
@@ -18,8 +20,9 @@ import { IoComponent } from './io/io.component';
     FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    routing
   ],
-  providers: [],
+  providers: [ResolverModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
