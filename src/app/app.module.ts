@@ -8,6 +8,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { IoComponent } from './io/io.component';
 import {ResolverModule} from './resolver.module';
 import { routing } from './resolver.module';
+import {RouterModule} from '@angular/router';
+
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { routing } from './resolver.module';
     HttpClientModule,
     routing
   ],
+  exports: [RouterModule],
   providers: [ResolverModule],
   bootstrap: [AppComponent]
 })
