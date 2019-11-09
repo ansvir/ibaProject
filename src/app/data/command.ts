@@ -6,48 +6,51 @@ export class Command {
   private result: string;
   private timestamp: string;
 
-  constructor( subsystem_id: number, command: string) {
-      const date = new Date();
-      this.subsystem_id = subsystem_id;
-      this.command = command;
-      this.timestamp = date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear() + ' '
-        + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
-      this.result = '';
+  constructor( subsystem_id?: number, command?: string) {
+      if(!arguments.length) {}
+      else {
+        const date = new Date();
+        this.subsystem_id = subsystem_id;
+        this.command = command;
+        this.timestamp = date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear() + ' '
+          + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+        this.result = '';
+      }
   }
 
-  get getId(): number {
+  getId(): number {
     return this.id;
   }
 
-  set setId(value: number) {
+  setId(value: number) {
     this.id = value;
   }
 
-  get getSubsystemId(): number {
+  getSubsystemId(): number {
     return this.subsystem_id;
   }
 
-  set setSubsystemId(value: number) {
+  setSubsystemId(value: number) {
     this.subsystem_id = value;
   }
 
-  get getCommand(): string {
+  getCommand(): string {
     return this.command;
   }
 
-  set setCommand(value: string) {
+  setCommand(value: string) {
     this.command = value;
   }
 
-  get getResult(): string {
+  getResult(): string {
     return this.result;
   }
 
-  set setResult(value: string) {
+  setResult(value: string) {
     this.result = value;
   }
 
-  get getTimestamp(): string {
+  getTimestamp(): string {
     return this.timestamp;
   }
 

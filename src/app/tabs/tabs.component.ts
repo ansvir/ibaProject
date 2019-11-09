@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Subsystem} from '../data/subsystem';
-import {TerminalService} from '../services/terminal.service';
 import {AppConfig} from '../config/app.config';
 
 

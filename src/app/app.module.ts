@@ -31,5 +31,4 @@ export function loadConfig(config: AppConfig) {
   ]
 })
 export class AppModule {
-
 }

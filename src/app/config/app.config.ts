@@ -13,6 +13,18 @@ export class AppConfig {
 
   }
 
+  load() {
+    return new Promise((resolve) => {
+      this.http
+        .get('http://localhost:8080/subsystems')
+        .pipe(map(value=>value))
+        .subscribe((data: Subsystem[]) => {
+          this.subsystems = data;
+          resolve(true);
+        });
+    });
+  }
+
   public getSubsystem() {
     return this.subsystem;
   }
@@ -27,17 +39,5 @@ export class AppConfig {
 
   public setSubsystems(subsystems: Subsystem[]) {
     this.subsystems=subsystems;
-  }
-
-  load() {
-    return new Promise((resolve) => {
-      this.http
-        .get('http://localhost:8080/subsystems')
-        .pipe(map(value=>value))
-        .subscribe((data: Subsystem[]) => {
-          this.subsystems = data;
-          resolve(true);
-        });
-    });
   }
 }
