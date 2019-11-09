@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Subsystem} from '../data/Subsystem';
+import {Subsystem} from '../data/subsystem';
 import {TerminalService} from '../services/terminal.service';
-import {ActivatedRoute} from '@angular/router';
+import {AppConfig} from '../config/app.config';
 
 
 
@@ -15,33 +15,26 @@ import {ActivatedRoute} from '@angular/router';
 export class TabsComponent implements OnInit {
 
   subsystems: Subsystem[];
+  subsystem: Subsystem;
   currentTabId;
 
-  constructor(private terminalService: TerminalService, private actr: ActivatedRoute) {
-    console.log('child1 constructor');
-    this.subsystems=this.actr.snapshot.data.subsystems;
-    console.log(this.subsystems);
+  constructor(private config: AppConfig) {
   }
 
   ngOnInit() {
     console.log('child1 ngoninit');
-    // try {
-    //   this.terminalService.setCurrentResult('Connecting...');
-    //   this.actr.data.subscribe((data: []) => {
-    //     console.log('get in child1 finished');
-    //     this.subsystems=data;
-    //     console.log(data);
-    //     this.currentTabId=0;
-    //     this.terminalService.setSubsystem(this.subsystems[this.currentTabId]);
-    //   });
-    // } catch (exception) {
-    //   console.log(exception);
-    // }
+    this.subsystems=this.config.getSubsystems();
+    console.log(this.subsystems);
+    this.currentTabId=0;
+    this.config.setSubsystem(this.subsystems[this.currentTabId]);
+    this.subsystem=this.config.getSubsystem();
+    console.log(this.config.getSubsystem());
   }
 
   tabPressed(id) {
     this.currentTabId=id;
-    this.terminalService.setSubsystem(this.subsystems[id]);
+    this.config.setSubsystem(this.subsystems[id]);
+    this.subsystem=this.config.getSubsystem();
   }
 
 }

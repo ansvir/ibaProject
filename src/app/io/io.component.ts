@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Command} from '../data/Command';
+import {Command} from '../data/command';
 import {TerminalService} from '../services/terminal.service';
+import {AppConfig} from '../config/app.config';
 
 @Component({
   selector: 'app-io',
@@ -10,7 +11,7 @@ import {TerminalService} from '../services/terminal.service';
 
 export class IoComponent implements OnInit{
 
-  constructor(private terminalService: TerminalService) {}
+  constructor(private terminalService: TerminalService, private config: AppConfig) {}
 
   CONNECTION_ERROR_MSG='Error while connecting to localhost:8080\n';
   inputCommand: string;
@@ -20,7 +21,7 @@ export class IoComponent implements OnInit{
     this.terminalService.setCurrentResult('');
     try {
       this.terminalService
-        .getResultsBySubsystem(this.terminalService.getSubsystem().name)
+        .getResultsBySubsystem(this.config.getSubsystem().name)
         .subscribe((data: Command[])=> {
           console.log(data);
           data.forEach((value)=> {
@@ -37,7 +38,7 @@ export class IoComponent implements OnInit{
   async enterPressed() {
     try {
       this.terminalService
-        .postCommand(new Command(this.terminalService.getSubsystem().id,this.inputCommand))
+        .postCommand(new Command(this.config.getSubsystem().id,this.inputCommand))
           .subscribe();
     } catch (exception) {
       console.log(exception);
@@ -46,7 +47,7 @@ export class IoComponent implements OnInit{
 
     try {
       this.terminalService
-        .getResultsBySubsystem(this.terminalService.getSubsystem().name)
+        .getResultsBySubsystem(this.config.getSubsystem().name)
           .subscribe((data: Command[])=> {
             console.log(data);
             this.terminalService.setCurrentResult('');
