@@ -14,9 +14,12 @@ public class CommandDAOImpl implements CommandDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public List<Command> getAllBySubsystemId(Integer id) {
-        String query="SELECT * FROM commands WHERE subsystem_id = ?";
-        return jdbcTemplate.query(query,new Object[]{id},new CommandRowMapper());
+    public List<Command> getAllBySubsystemName(String name) {
+        String query=
+                "SELECT * FROM commands\n"+
+                "JOIN subsystems ON commands.subsystem_id=subsystems.id\n" +
+                "WHERE subsystems.name LIKE ?;";
+        return jdbcTemplate.query(query,new Object[]{name},new CommandRowMapper());
     }
 
     public Command createCommand(Command newCommand) {

@@ -8,6 +8,4 @@ public interface SubsystemDAO{
     List<Subsystem> getAllSubsystems();
 
     Subsystem getById(Integer id);
-
-    Integer getIdByName(String name);
 }

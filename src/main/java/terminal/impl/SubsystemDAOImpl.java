@@ -24,15 +24,4 @@ public class SubsystemDAOImpl implements SubsystemDAO{
         return jdbcTemplate.query(query,new SubsystemRowMapper());
     }
 
-    public Integer getIdByName(String name) {
-        List<Subsystem> subsystems=getAllSubsystems();
-        for(Subsystem s: subsystems) {
-            if(s.getName().equals(name)) {
-                return s.getId();
-            }
-        }
-
-        return null;
-    }
-
 }

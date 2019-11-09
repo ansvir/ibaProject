@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface CommandDAO{
 
-    List<Command> getAllBySubsystemId(Integer id);
+    List<Command> getAllBySubsystemName(String name);
 
     Command createCommand(Command command);
 
