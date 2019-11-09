@@ -2,21 +2,23 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {ResolverService} from './services/resolver.service';
-import {AppComponent} from './app.component';
+import {TabsComponent} from './tabs/tabs.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AppComponent,
-    resolve: ResolverService
+    component: TabsComponent,
+    resolve: {
+      subsystems: ResolverService
+    }
   }
 ];
 
-export const routing = RouterModule.forRoot(routes);
-
 @NgModule({
   declarations: [],
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    RouterModule.forRoot(routes)],
   exports: [RouterModule],
   providers: [ResolverService]
 })

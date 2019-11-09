@@ -38,7 +38,7 @@ export class IoComponent implements OnInit{
     try {
       this.terminalService
         .postCommand(new Command(this.terminalService.getSubsystem().id,this.inputCommand))
-          .then();
+          .subscribe();
     } catch (exception) {
       console.log(exception);
       this.terminalService.addCurrentResult(this.CONNECTION_ERROR_MSG);

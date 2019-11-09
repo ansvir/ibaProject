@@ -7,8 +7,8 @@ import { TabsComponent } from './tabs/tabs.component';
 import {HttpClientModule} from '@angular/common/http';
 import { IoComponent } from './io/io.component';
 import {ResolverModule} from './resolver.module';
-import { routing } from './resolver.module';
 import {RouterModule} from '@angular/router';
+import {ResolverService} from './services/resolver.service';
 
 
 @NgModule({
@@ -22,10 +22,8 @@ import {RouterModule} from '@angular/router';
     FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    routing
+    ResolverModule
   ],
-  exports: [RouterModule],
-  providers: [ResolverModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

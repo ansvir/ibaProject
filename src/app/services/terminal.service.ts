@@ -15,8 +15,8 @@ export class TerminalService{
   constructor(private httpClient: HttpClient) {}
 
   getSubsystems() {
-    console.log('get Subsystems');
-    return this.httpClient.get<Subsystem[]>('http://localhost:8080/subsystems').pipe(map(res=>console.log(res+' v map')));
+    console.log('getSubsystems in terminal.service invoking');
+    return this.httpClient.get('http://localhost:8080/subsystems');
   }
 
   getResultsBySubsystem(name: string) {
@@ -24,7 +24,7 @@ export class TerminalService{
   }
 
   postCommand(command: Command) {
-    return this.httpClient.post('http://localhost:8080', command).toPromise();
+    return this.httpClient.post('http://localhost:8080', command);
   }
 
   getSubsystem() {
