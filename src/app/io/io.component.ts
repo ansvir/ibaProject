@@ -17,7 +17,6 @@ export class IoComponent implements OnInit{
   inputCommand: string;
 
   ngOnInit() {
-    console.log('child2 ngoninit');
     this.terminalService.setCurrentResult('');
     try {
       this.terminalService

@@ -30,7 +30,6 @@ export class AppConfig {
   }
 
   load() {
-    console.log('config loaded');
     return new Promise((resolve) => {
       this.http
         .get('http://localhost:8080/subsystems')

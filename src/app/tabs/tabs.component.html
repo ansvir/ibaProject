@@ -2,7 +2,7 @@
   <div
     class="tabs"
     *ngFor="let subsystem of subsystems; let i=index"
-    [ngClass]="{'tabClicked':currentTabId==i}"
+    [ngClass]="{'tabClicked':currentTabId===i}"
     (click)="tabPressed(i);"
   >
     {{subsystem.name}}

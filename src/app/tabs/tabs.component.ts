@@ -22,13 +22,10 @@ export class TabsComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('child1 ngoninit');
-    this.subsystems=this.config.getSubsystems();
-    console.log(this.subsystems);
     this.currentTabId=0;
+    this.subsystems=this.config.getSubsystems();
     this.config.setSubsystem(this.subsystems[this.currentTabId]);
     this.subsystem=this.config.getSubsystem();
-    console.log(this.config.getSubsystem());
   }
 
   tabPressed(id) {
