@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Subsystem} from '../data/subsystem';
-import {AppConfig} from '../config/app.config';
+import {TerminalService} from '../services/terminal.service';
 
 
 
@@ -13,24 +12,21 @@ import {AppConfig} from '../config/app.config';
 
 export class TabsComponent implements OnInit {
 
-  subsystems: Subsystem[];
-  subsystem: Subsystem;
   currentTabId;
 
-  constructor(private config: AppConfig) {
+  constructor(private terminalService: TerminalService) {
   }
 
   ngOnInit() {
     this.currentTabId=0;
-    this.subsystems=this.config.getSubsystems();
-    this.config.setSubsystem(this.subsystems[this.currentTabId]);
-    this.subsystem=this.config.getSubsystem();
+    this.terminalService.setSubsystem(this.terminalService.getSubsystems()[this.currentTabId]);
   }
 
-  tabPressed(id) {
+  async tabPressed(id) {
     this.currentTabId=id;
-    this.config.setSubsystem(this.subsystems[id]);
-    this.subsystem=this.config.getSubsystem();
+    this.terminalService.setSubsystem(this.terminalService.getSubsystems()[this.currentTabId]);
+    await this.terminalService.loadResultsToOutput();
   }
+
 
 }

@@ -11,10 +11,35 @@ export class Command {
       else {
         const date = new Date();
         this.subsystem_id = subsystem_id;
-        this.command = command;
         this.timestamp = date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear() + ' '
           + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
         this.result = '';
+        switch (command) {
+          case 'command' : {
+            this.result='there should be results';
+            break;
+          }
+          case '=xall' : {
+            this.result='all windows are closed';
+            break;
+          }
+          case '=x' : {
+            this.result='current window is closed';
+            break;
+          }
+          case 'another-command': {
+            this.result='there should be another results';
+            break;
+          }
+          case 'help' : {
+            this.result='available commands:\ncommand\nanother-command\n=xall\n=x';
+            break;
+          }
+          default :
+            this.result='unknown command';
+            break;
+        }
+        this.command='>'+command;
       }
   }
 

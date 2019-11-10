@@ -1,7 +1,7 @@
 <div class="horizontal">
   <div
     class="tabs"
-    *ngFor="let subsystem of subsystems; let i=index"
+    *ngFor="let subsystem of terminalService.getSubsystems(); let i=index"
     [ngClass]="{'tabClicked':currentTabId===i}"
     (click)="tabPressed(i);"
   >

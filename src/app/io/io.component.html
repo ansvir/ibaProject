@@ -1,14 +1,29 @@
 <div class="io">
-  <p>
-    <input type="text" name="input" [(ngModel)]="inputCommand" (keyup.enter)="enterPressed()" autofocus>&nbsp;
+  <div class="inputBlock">
+    <input type="text" name="inputCommand" [(ngModel)]="inputCommand" (keyup.enter)="enterPressed()" autofocus>&nbsp;
     <button (click)="enterPressed()" class="ioButtons">
       enter
     </button>
-  </p>
-  <p>
-    <textarea readonly>{{terminalService.getCurrentResult()}}</textarea>&nbsp;
-    <button (click)="clearText()" class="ioButtons">
-      clear
-    </button>
-  </p>
+  </div>
+    <table>
+      <tr>
+        <td>
+          <div class="outputBlock">
+            <textarea readonly>{{terminalService.getCurrentResult()}}</textarea>
+          </div>
+        </td>
+        <td>
+          <div class="clear">
+            <button (click)="clearText()" class="ioButtons">
+              clear
+            </button>
+          </div>
+          <div class="delete">
+            <button (click)="deleteFromDatabase()" class="ioButtons">
+              delete
+            </button>
+          </div>
+        </td>
+      </tr>
+    </table>
 </div>

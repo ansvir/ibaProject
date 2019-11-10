@@ -1,3 +1,8 @@
+.io {
+  text-align:center;
+  color:#00b140;
+}
+
 input {
   -moz-appearance: none;
   outline: none;
@@ -8,21 +13,36 @@ input {
   font-size:20px;
 }
 
+.inputBlock {
+  margin-bottom: 20px;
+  margin-top: 15px;
+}
+
 textarea {
   -moz-appearance: none;
   outline: none;
   resize: none;
   height: 400px;
-  width: 620px;
+  width: 617px;
   background-color: black;
   border: 2px solid white;
   color: #00b140;
   font-size:20px;
-
 }
-.io {
-  text-align:center;
-  color:#00b140;
+
+.outputBlock {
+  margin-left: 37px;
+  margin-bottom: 15px;
+}
+
+.clear {
+  margin-top: 200px;
+  margin-left: 10px;
+}
+
+.delete {
+  margin-top: 50px;
+  margin-left: 10px;
 }
 
 .ioButtons {
@@ -34,6 +54,7 @@ textarea {
   color: black;
   padding: 5px 15px;
   font-size: 20px;
+  width: 80px;
 }
 
 .ioButtons:active {

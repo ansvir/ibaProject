@@ -2,42 +2,24 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Subsystem} from '../data/subsystem';
 import {map} from 'rxjs/operators';
+import {TerminalService} from '../services/terminal.service';
 
 @Injectable()
 export class AppConfig {
 
-  private subsystems: Subsystem[] = null;
-  private subsystem: Subsystem = null;
-
-  constructor(private http: HttpClient) {
+  constructor(private httpClient: HttpClient, private terminalService: TerminalService) {
 
   }
 
   load() {
     return new Promise((resolve) => {
-      this.http
-        .get('http://localhost:8080/subsystems')
+      this.terminalService.getSubsystemsRequest()
         .pipe(map(value=>value))
         .subscribe((data: Subsystem[]) => {
-          this.subsystems = data;
+          console.log(data);
+          this.terminalService.setSubsystems(data);
           resolve(true);
         });
     });
-  }
-
-  public getSubsystem() {
-    return this.subsystem;
-  }
-
-  public setSubsystem(subsystem: Subsystem) {
-    this.subsystem=subsystem;
-  }
-
-  public getSubsystems() {
-    return this.subsystems;
-  }
-
-  public setSubsystems(subsystems: Subsystem[]) {
-    this.subsystems=subsystems;
   }
 }
