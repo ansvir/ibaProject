@@ -16,7 +16,6 @@ export class AppConfig {
       this.terminalService.getSubsystemsRequest()
         .pipe(map(value=>value))
         .subscribe((data: Subsystem[]) => {
-          console.log(data);
           this.terminalService.setSubsystems(data);
           resolve(true);
         });

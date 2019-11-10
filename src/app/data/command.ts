@@ -1,85 +1,59 @@
 export class Command {
 
-  private id: number;
-  private subsystem_id: number;
-  private command: string;
-  private result: string;
-  private timestamp: string;
+  id: number;
+  subsystem_id: number;
+  command: string;
+  result: string;
+  timestamp: string;
 
-  constructor( subsystem_id?: number, command?: string) {
+  private results=[
+    {
+      command: 'command',
+      result: 'there should be results'
+    },
+    {
+      command: '=xall',
+      result: 'all windows are closed'
+    },
+    {
+     command: '=x',
+     result: 'current window is closed'
+    },
+    {
+      command:'another-command',
+      result:'there should be another results'
+    },
+    {
+      command:'help',
+      result:'available commands:\n\tcommand\n\tanother-command\n\t=xall\n\t=x'
+    }
+  ];
+
+  constructor(subsystem_id?: number, command?: string) {
       if(!arguments.length) {}
       else {
-        const date = new Date();
         this.subsystem_id = subsystem_id;
-        this.timestamp = date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear() + ' '
-          + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
-        this.result = '';
-        switch (command) {
-          case 'command' : {
-            this.result='there should be results';
+
+        const date = new Date();
+        this.timestamp =
+          date.getDate() + '-'
+          + date.getMonth() + '-'
+          + date.getFullYear() + ' '
+          + date.getHours() + ':'
+          + date.getMinutes() + ':'
+          + date.getSeconds();
+
+        this.command=command;
+
+        this.result='unknown command';
+        for(const res of this.results) {
+          if(res.command===this.command) {
+            this.result=res.result;
             break;
           }
-          case '=xall' : {
-            this.result='all windows are closed';
-            break;
-          }
-          case '=x' : {
-            this.result='current window is closed';
-            break;
-          }
-          case 'another-command': {
-            this.result='there should be another results';
-            break;
-          }
-          case 'help' : {
-            this.result='available commands:\ncommand\nanother-command\n=xall\n=x';
-            break;
-          }
-          default :
-            this.result='unknown command';
-            break;
         }
+
         this.command='>'+command;
       }
-  }
-
-  getId(): number {
-    return this.id;
-  }
-
-  setId(value: number) {
-    this.id = value;
-  }
-
-  getSubsystemId(): number {
-    return this.subsystem_id;
-  }
-
-  setSubsystemId(value: number) {
-    this.subsystem_id = value;
-  }
-
-  getCommand(): string {
-    return this.command;
-  }
-
-  setCommand(value: string) {
-    this.command = value;
-  }
-
-  getResult(): string {
-    return this.result;
-  }
-
-  setResult(value: string) {
-    this.result = value;
-  }
-
-  getTimestamp(): string {
-    return this.timestamp;
-  }
-
-  setTimestamp(value: string) {
-    this.timestamp = value;
   }
 }

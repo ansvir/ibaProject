@@ -1,9 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TerminalService} from '../services/terminal.service';
 
-
-
-
 @Component({
   selector: 'app-tabs-component',
   templateUrl: 'tabs.component.html',
@@ -12,7 +9,7 @@ import {TerminalService} from '../services/terminal.service';
 
 export class TabsComponent implements OnInit {
 
-  currentTabId;
+  private currentTabId;
 
   constructor(private terminalService: TerminalService) {
   }
@@ -27,6 +24,5 @@ export class TabsComponent implements OnInit {
     this.terminalService.setSubsystem(this.terminalService.getSubsystems()[this.currentTabId]);
     await this.terminalService.loadResultsToOutput();
   }
-
 
 }

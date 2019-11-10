@@ -1,9 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Command} from '../data/command';
 import {TerminalService} from '../services/terminal.service';
-import {AppConfig} from '../config/app.config';
-
-
 
 @Component({
   selector: 'app-io',
@@ -13,7 +9,7 @@ import {AppConfig} from '../config/app.config';
 
 export class IoComponent implements OnInit{
 
-  constructor(private terminalService: TerminalService, private config: AppConfig) {}
+  constructor(private terminalService: TerminalService) {}
 
   private inputCommand: string;
 
@@ -31,7 +27,7 @@ export class IoComponent implements OnInit{
     }
   }
 
-  clearText(subsystem) {
+  clearText() {
     this.terminalService.setCurrentResult('');
   }
 

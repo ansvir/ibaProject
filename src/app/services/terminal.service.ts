@@ -9,11 +9,11 @@ import {Subsystem} from '../data/subsystem';
 export class TerminalService{
 
   private currentResult: string;
-  CONNECTION_ERROR_MSG='Error while connecting to localhost:8080\n\n';
-  DELETING_ERROR_MSG='Error while deleting\n\n';
   private command: Command=null;
   private subsystem: Subsystem=null;
   private subsystems: Subsystem[]=null;
+  CONNECTION_ERROR_MSG='Error while connecting to localhost:8080\n\n';
+  DELETING_ERROR_MSG='Error while deleting\n\n';
 
   constructor(private httpClient: HttpClient) {
   }
@@ -24,10 +24,6 @@ export class TerminalService{
 
   getResultsBySubsystemNameRequest() {
     return this.httpClient.get('http://localhost:8080/subsystems/results?name='+this.subsystem.name);
-  }
-
-  getResultsBySubsystemIdRequest() {
-    return this.httpClient.get('http://localhost:8080/subsystems/results?id='+this.subsystem.id);
   }
 
   async deleteResultsBySubsystemIdRequest() {
@@ -43,9 +39,9 @@ export class TerminalService{
             for (const value of data) {
               this.command = Object.assign(new Command(), value);
               this.addCurrentResult(
-                this.command.getCommand() + '\n' +
-                this.command.getResult() + '\n' +
-                this.command.getTimestamp() + '\n\n'
+                this.command.command + '\n' +
+                this.command.result + '\n' +
+                this.command.timestamp + '\n\n'
               );
             }
             this.command = null;
@@ -65,9 +61,9 @@ export class TerminalService{
         .toPromise()
           .then(() =>{
             this.addCurrentResult(
-              this.command.getCommand()+ '\n'+
-              this.command.getResult()+'\n'+
-              this.command.getTimestamp()+'\n\n'
+              this.command.command + '\n'+
+              this.command.result+'\n'+
+              this.command.timestamp+'\n\n'
             );
             this.command=null;
           });
@@ -115,7 +111,5 @@ export class TerminalService{
   addCurrentResult(result: string) {
     this.currentResult+=result;
   }
-
-
 
 }
