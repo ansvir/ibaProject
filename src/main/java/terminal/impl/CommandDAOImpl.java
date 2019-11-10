@@ -14,6 +14,11 @@ public class CommandDAOImpl implements CommandDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    public List<Command> getAllBySubsystemId(Integer id) {
+        String query="SELECT * FROM commands WHERE subsystem_id = ?";
+        return jdbcTemplate.query(query,new Object[]{id},new CommandRowMapper());
+    }
+
     public List<Command> getAllBySubsystemName(String name) {
         String query=
                 "SELECT * FROM commands\n"+
@@ -22,11 +27,10 @@ public class CommandDAOImpl implements CommandDAO {
         return jdbcTemplate.query(query,new Object[]{name},new CommandRowMapper());
     }
 
-    public Command createCommand(Command newCommand) {
+    public void createCommand(Command newCommand) {
 
         String query="INSERT INTO commands (subsystem_id,command,result,timestamp) VALUES (?,?,?,?)";
         jdbcTemplate.update(query,newCommand.getSubsystem_id(),newCommand.getCommand(),newCommand.getResult(),newCommand.getTimestamp());
-        return newCommand;
     }
 
     public void deleteCommandsBySubsystemId(Integer subsystem_id) {
