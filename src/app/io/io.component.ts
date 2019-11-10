@@ -18,8 +18,8 @@ export class IoComponent implements OnInit{
   }
 
   async enterPressed() {
-    if(this.inputCommand===undefined) {
-      this.terminalService.addCurrentResult('Input empty\n');
+    if(this.inputCommand==='' || this.inputCommand===undefined) {
+      this.terminalService.addCurrentResult('Input empty\n\n');
     }
     else {
       await this.terminalService.postCommand(this.inputCommand);
