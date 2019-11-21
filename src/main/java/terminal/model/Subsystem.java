@@ -26,4 +26,28 @@ public class Subsystem {
         this.name=name;
     }
 
+    @Override
+    public String toString() {
+        return this.id+" "+this.name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(o == this) return true;
+
+        if(!(o instanceof Subsystem)) return false;
+
+        Subsystem subsystem = (Subsystem) o;
+
+        return this.id==subsystem.id &&
+                this.name.equals(subsystem.name);
+    }
+
+    @Override
+    public int hashCode() {
+        int result=17;
+        result=result*31+this.id;
+        result=result*31+this.name.hashCode();
+        return result;
+    }
 }

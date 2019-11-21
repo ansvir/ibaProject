@@ -7,6 +7,7 @@ public class Command {
     private String result;
     private String timestamp;
 
+    public Command() {}
 
     public Command(int id, int subsystem_id, String command, String result, String timestamp) {
         this.id = id;
@@ -15,8 +16,6 @@ public class Command {
         this.result=result;
         this.timestamp=timestamp;
     }
-
-    public Command() {}
 
     public int getId() {
         return id;
@@ -56,5 +55,37 @@ public class Command {
 
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
+    }
+
+    @Override
+    public String toString() {
+        return this.id+" "+this.subsystem_id+" "+this.command+" "+this.result+" "+this.timestamp;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(o == this) return true;
+
+        if(!(o instanceof Command)) return false;
+
+        Command command = (Command) o;
+
+        return this.id==command.id &&
+                this.subsystem_id==command.subsystem_id &&
+                this.command.equals(command.command) &&
+                this.result.equals(command.result) &&
+                this.timestamp.equals(command.timestamp);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result=17;
+        result=result*31+this.id;
+        result=result*31+this.subsystem_id;
+        result=result*31+this.command.hashCode();
+        result=result*31+this.result.hashCode();
+        result=result*31+this.timestamp.hashCode();
+        return result;
     }
 }
