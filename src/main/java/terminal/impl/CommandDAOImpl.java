@@ -28,7 +28,6 @@ public class CommandDAOImpl implements CommandDAO {
     }
 
     public void createCommand(Command newCommand) {
-
         String query="INSERT INTO commands (subsystem_id,command,result,timestamp) VALUES (?,?,?,?)";
         jdbcTemplate.update(query,newCommand.getSubsystem_id(),newCommand.getCommand(),newCommand.getResult(),newCommand.getTimestamp());
     }

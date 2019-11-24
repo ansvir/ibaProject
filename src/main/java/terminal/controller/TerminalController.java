@@ -29,6 +29,11 @@ public class TerminalController {
         return subsystemDAOImpl.getAllSubsystems();
     }
 
+    @GetMapping(params = "id")
+    public Subsystem getSubsystemById(@RequestParam("id") Integer id) {
+        return subsystemDAOImpl.getById(id);
+    }
+
     //commands
 
     @GetMapping(value = "/results", params = "name")
